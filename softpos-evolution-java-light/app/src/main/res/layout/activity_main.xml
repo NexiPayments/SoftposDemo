@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/color_background_activity"
+    android:orientation="vertical"
+    tools:context="it.nexi.softpos_evo_java_light.activities.MainActivity">
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="Test Sofpos EVO - Java light"
+        android:textAlignment="center"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        android:textStyle="bold"
+        />
+
+    <TextView
+        android:id="@+id/textViewAppVersion"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_gravity="center"
+        android:text="Version"
+        android:textAlignment="center"
+        android:textStyle="bold" />
+
+    <ScrollView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="10dp"
+        >
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center_horizontal"
+            >
+
+            <Button
+                android:id="@+id/btnPayment"
+                android:layout_width="150dp"
+                android:layout_height="@dimen/button_height"
+                android:backgroundTint="@color/color_background_button"
+                android:text="Payment" />
+
+            <Button
+                android:id="@+id/btnReversal"
+                android:layout_width="150dp"
+                android:layout_height="@dimen/button_height"
+                android:backgroundTint="@color/color_background_button"
+                android:text="Reversal" />
+
+            <Button
+                android:id="@+id/btnLastTransaction"
+                android:layout_width="150dp"
+                android:layout_height="@dimen/button_height"
+                android:backgroundTint="@color/color_background_button"
+                android:text="Last trans" />
+
+            <Button
+                android:id="@+id/btnCloseAccount"
+                android:layout_width="150dp"
+                android:layout_height="@dimen/button_height"
+                android:backgroundTint="@color/color_background_button"
+                android:text="CloseAccount" />
+
+            <LinearLayout
+                android:layout_width="300dp"
+                android:layout_height="30dp"
+                android:orientation="horizontal"
+                android:layout_marginTop="30dp"
+                android:layout_gravity="center_horizontal"
+                android:background="@drawable/layout_with_border"
+                >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginStart="10dp"
+                    android:text="Connection event"
+                    android:textStyle="bold"
+                    />
+
+                <TextView
+                    android:id="@+id/textViewStatoConnessioneSDK"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginStart="10dp"
+                    android:text=""
+                    android:textStyle="bold"
+                    />
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</LinearLayout>

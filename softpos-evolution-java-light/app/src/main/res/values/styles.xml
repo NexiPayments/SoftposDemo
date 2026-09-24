@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Stile personalizzato per rendere il caricamento trasparente -->
+    <style name="TransparentDialog" parent="Theme.AppCompat.Light.Dialog.Alert">
+        <!-- Rende lo sfondo della finestra trasparente -->
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <!-- Rimuove la cornice del titolo e dell'interfaccia standard -->
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:windowNoTitle">true</item>
+        <!-- Permette l'oscuramento dello sfondo dietro al box -->
+        <item name="android:backgroundDimEnabled">true</item>
+    </style>
+</resources>

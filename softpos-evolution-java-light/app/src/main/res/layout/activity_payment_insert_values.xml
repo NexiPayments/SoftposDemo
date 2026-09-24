@@ -1,0 +1,274 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/color_background_activity"
+    tools:context="it.nexi.softpos_evo_java_light.activities.PaymentInsertValuesActivity"
+    android:orientation="vertical"
+    android:focusableInTouchMode="true"
+    >
+
+    <TextView
+        android:id="@+id/textViewHeader"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="@string/payment_insert_valuesi_header"
+        android:textAlignment="center"
+        android:textSize="16sp"
+        android:textStyle="bold" />
+
+    <ScrollView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="10dp"
+        >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal">
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/textInputLayoutAmount"
+                android:layout_width="120dp"
+                android:layout_height="@dimen/edittext_height"
+                android:hint="@string/payment_insert_valuesi_amount">
+
+                <EditText
+                    android:id="@+id/editTextAmount"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:ems="10"
+                    android:inputType="numberDecimal" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <CheckBox
+                android:id="@+id/checkBoxTipEnabled"
+                android:layout_width="60dp"
+                android:layout_height="@dimen/checkbox_height"
+                android:checked="false"
+                android:text="Tip" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/textInputLayoutTipAmount"
+                android:layout_width="115dp"
+                android:layout_height="@dimen/edittext_height"
+                android:layout_marginLeft="5dp"
+                android:hint="@string/payment_insert_values_tip_amount">
+
+                <EditText
+                    android:id="@+id/editTextTipAmount"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:ems="10"
+                    android:inputType="numberDecimal" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+            </LinearLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/textLayoutInputCallerTrxId"
+                android:layout_width="@dimen/edittext_width"
+                android:layout_height="@dimen/edittext_height"
+                android:layout_marginTop="@dimen/edittext_margin_top"
+                android:hint="@string/payment_insert_values_callertrxid">
+
+                <EditText
+                    android:id="@+id/editTextCallerTrxId"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:ems="5"
+                    android:inputType="text" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/textLayoutInputEmail"
+                android:layout_width="@dimen/edittext_width"
+                android:layout_height="@dimen/edittext_height"
+                android:layout_marginTop="@dimen/edittext_margin_top"
+                android:hint="@string/payment_insert_values_email">
+
+                <EditText
+                    android:id="@+id/editTextEmail"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:ems="10"
+                    android:inputType="textEmailAddress"
+
+                    />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/textLayoutInputSms"
+                android:layout_width="@dimen/edittext_width"
+                android:layout_height="@dimen/edittext_height"
+                android:layout_marginTop="@dimen/edittext_margin_top"
+                android:hint="@string/payment_insert_values_sms">
+
+                <EditText
+                    android:id="@+id/editTextSms"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:ems="10"
+                    android:inputType="text" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/edittext_margin_top"
+                android:orientation="horizontal"
+                >
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/textLayoutInputAddInfo1"
+                    android:layout_width="90dp"
+                    android:layout_height="@dimen/edittext_height"
+                    android:hint="@string/payment_insert_values_add1">
+
+                    <EditText
+                        android:id="@+id/editTextAddInfo1"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:ems="10"
+                        android:inputType="text" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/textLayoutInputAddInfo2"
+                    android:layout_width="90dp"
+                    android:layout_height="@dimen/edittext_height"
+                    android:layout_marginLeft="3dp"
+                    android:hint="@string/payment_insert_values_add2">
+
+                    <EditText
+                        android:id="@+id/editTextAddInfo2"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:ems="10"
+                        android:inputType="text" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/textLayoutInputAddInfo3"
+                    android:layout_width="90dp"
+                    android:layout_height="@dimen/edittext_height"
+                    android:layout_marginLeft="3dp"
+                    android:hint="@string/payment_insert_values_add3">
+
+                    <EditText
+                        android:id="@+id/editTextAddInfo3"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:ems="10"
+                        android:inputType="text" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+
+            </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:gravity=""
+            android:orientation="horizontal"
+            >
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/textLayoutInputAddInfo4"
+                android:layout_width="90dp"
+                android:layout_height="@dimen/edittext_height"
+                android:hint="@string/payment_insert_values_add4">
+
+                <EditText
+                    android:id="@+id/editTextAddInfo4"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:ems="10"
+                    android:inputType="text" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/textLayoutInputAddInfo5"
+                android:layout_width="90dp"
+                android:layout_height="@dimen/edittext_height"
+                android:layout_marginLeft="3dp"
+                android:hint="@string/payment_insert_valuies_add5">
+
+                <EditText
+                    android:id="@+id/editTextAddInfo5"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:ems="10"
+                    android:inputType="text" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+        </LinearLayout>
+
+
+            <GridLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/edittext_margin_top"
+                android:columnCount="3">
+
+                <CheckBox
+                    android:id="@+id/checkBoxAutoClose"
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/checkbox_height"
+                    android:checked="false"
+                    android:text="@string/payment_insert_values_checkbox_autoclose" />
+
+                <CheckBox
+                    android:id="@+id/checkBoxUrlTicket"
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/checkbox_height"
+                    android:checked="false"
+                    android:text="@string/payment_insert_values_checkbox_urltick"
+                    android:breakStrategy="high_quality"
+                    />
+
+                <CheckBox
+                    android:id="@+id/checkBoxHideRetry"
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/checkbox_height"
+                    android:checked="false"
+                    android:text="@string/payment_insert_values_checkbox_hire" />
+
+
+            </GridLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:orientation="horizontal"
+            />
+
+            <Button
+                android:id="@+id/btnStartPayment"
+                android:layout_width="200dp"
+                android:layout_height="@dimen/button_height"
+                android:layout_gravity="center"
+                android:layout_marginTop="10dp"
+                android:backgroundTint="@color/color_background_button"
+                android:text="@string/payment_insert_values_button_start_payment" />
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</LinearLayout>

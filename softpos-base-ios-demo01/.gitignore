@@ -1,0 +1,24 @@
+# Xcode
+#
+build/
+DerivedData/
+*.hmap
+*.ipa
+*.playground.xml
+*.playground
+
+# User settings
+# Qui ci sono le impostazioni del tuo Xcode (finestre aperte, ecc.)
+# che non devono andare su GitHub
+xcuserdata/
+
+# Swift Package Manager
+.build/
+Packages/
+Package.resolved
+Package.pins
+
+# macOS
+.DS_Store
+*.swp
+*.lock

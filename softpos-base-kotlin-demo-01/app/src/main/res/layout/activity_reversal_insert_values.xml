@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/color_background_activity"
+    tools:context=".activities.ReversalInsertValuesActivity">
+
+    <TextView
+        android:id="@+id/textViewReversalHeader"
+        android:layout_width="215dp"
+        android:layout_height="38dp"
+        android:layout_marginTop="48dp"
+        android:text="Reversal insert values"
+        android:layout_gravity="center"
+        android:textAlignment="center"
+        android:textSize="16sp"
+        android:textStyle="bold" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/textInputLayoutTerminalIdReversal"
+                android:layout_width="300dp"
+                android:layout_height="60dp"
+                android:layout_marginTop="10dp"
+                android:layout_gravity="center"
+                android:hint="TerminalId">
+
+                <EditText
+                    android:id="@+id/editTextTerminalId"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:ems="10"
+                    android:enabled="false"
+                    android:inputType="none"
+
+                    />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/textInputLayoutAmountReversal"
+                android:layout_width="300dp"
+                android:layout_height="60dp"
+                android:layout_marginTop="10dp"
+                android:layout_gravity="center"
+                android:hint="Amount">
+
+                <EditText
+                    android:id="@+id/editTextAmount"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:ems="10"
+                    android:enabled="false"
+                    android:inputType="none" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/textInputLayoutTipAmountReversal"
+                android:layout_width="300dp"
+                android:layout_height="74dp"
+                android:layout_marginTop="10dp"
+                android:layout_gravity="center"
+                android:hint="Tip Amount">
+
+                <EditText
+                    android:id="@+id/editTextTipAmount"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:ems="10"
+                    android:enabled="false"
+                    android:inputType="none" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/textInputLayoutTotalAmountReversal"
+                android:layout_width="300dp"
+                android:layout_height="60dp"
+                android:layout_marginTop="10dp"
+                android:layout_gravity="center"
+                android:hint="TotalAmount">
+
+                <EditText
+                    android:id="@+id/editTextTotalAmount"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:ems="10"
+                    android:enabled="false"
+                    android:inputType="none" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/textLayoutInputCallerTrxId"
+                android:layout_width="300dp"
+                android:layout_height="60dp"
+                android:layout_marginTop="10dp"
+                android:layout_gravity="center"
+                android:hint="callerTrxId">
+
+                <EditText
+                    android:id="@+id/editTextCallerTrxId"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:ems="10"
+                    android:inputType="text" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/textLayoutInputEmail"
+                android:layout_width="300dp"
+                android:layout_height="60dp"
+                android:layout_marginTop="10dp"
+                android:layout_gravity="center"
+                android:hint="Email">
+
+                <EditText
+                    android:id="@+id/editTextEmail"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:ems="10"
+                    android:inputType="text" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <GridLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_gravity="center_horizontal"
+                android:columnCount="3">
+
+                <CheckBox
+                    android:id="@+id/checkBoxAutoClose"
+                    android:layout_width="wrap_content"
+                    android:layout_height="40dp"
+                    android:checked="false"
+                    android:layout_gravity="center"
+                    android:text="AutoClose" />
+
+                <CheckBox
+                    android:id="@+id/checkBoxUrlTicket"
+                    android:layout_width="wrap_content"
+                    android:layout_height="40dp"
+                    android:checked="false"
+                    android:text="urltick"
+                    android:breakStrategy="high_quality"
+                    />
+
+                <CheckBox
+                    android:id="@+id/checkBoxHideRetry"
+                    android:layout_width="wrap_content"
+                    android:layout_height="40dp"
+                    android:checked="false"
+                    android:text="Hide retry" />
+
+            </GridLayout>
+
+            <Button
+                android:id="@+id/btnStartReversal"
+                android:layout_width="207dp"
+                android:layout_height="62dp"
+                android:layout_marginTop="20dp"
+                android:layout_gravity="center"
+                android:backgroundTint="@color/color_background_button"
+                android:text="Reversal" />
+
+
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</LinearLayout>

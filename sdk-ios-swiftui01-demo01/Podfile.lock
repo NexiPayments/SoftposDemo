@@ -1,0 +1,20 @@
+PODS:
+  - App2AppSDK (1.0.3)
+  - Softpos (1.0.71)
+
+DEPENDENCIES:
+  - App2AppSDK (= 1.0.3)
+  - Softpos (= 1.0.71)
+
+SPEC REPOS:
+  https://artifactory.nexicloud.it/artifactory/api/pods/libs-nexi-pos-a2a-ios-release:
+    - App2AppSDK
+    - Softpos
+
+SPEC CHECKSUMS:
+  App2AppSDK: fbff746f99b33c608cf058a6ad00c5eea9574d3e
+  Softpos: 7a24431a80d1e730306ed046691fda0506557107
+
+PODFILE CHECKSUM: c8825b02de6eff8fdedb0830d9d4bd78288345b1
+
+COCOAPODS: 1.16.2

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#FF000000</color>
+    <color name="color_red">#EA0606</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="color_background_activity">#CAAC81</color>
+    <color name="color_background_button">#8D1B42</color>
+    <color name="color_item_selected">#A98B82</color>
+    <color name="color_item_focused">#673AB7</color>
+    <color name="color_item_production">#E91E63</color>
+    <color name="color_item_staging">#116D15</color>
+    <color name="color_item_punto_vendita">#3F51B5</color>
+</resources>

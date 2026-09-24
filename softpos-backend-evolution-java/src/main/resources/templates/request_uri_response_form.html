@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+    <head th:replace="fragments/head :: head"></head>
+
+    <body>
+        <div th:replace="fragments/header :: header"></div>
+
+        <div class="container-fluid">            
+            <div class="my-3">                                
+                <div>
+                    <h3 class="text-center" style="padding-top: 20px; padding-bottom: 25px">Request URI Response</h3>
+                </div> 
+                <form style="width: 30%; margin: 0 auto" class="form-style">                                       
+                    <div class="p-3">
+                        <div>
+                            <h5 th:if="${responseStatus == 'OK'}" style="padding-bottom: 20px; color: green"><i class="fa fa-check-circle" aria-hidden="true"></i> Request URI successfully completed!</h5>
+                            <h5 th:if="${responseStatus == 'KO'}" style="padding-bottom: 20px; color: red"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i> An error occurred: Request URI failed!</h5>
+                        </div>
+                        <div class="mb-3">
+                            <label for="response" class="form-label">Response</label>
+                            <textarea class="form-control" name="response" id="response" rows="5" readonly>[[${response}]]</textarea>                                                 
+                        </div>
+                    </div>
+                </form>
+                <br><br><br>
+            </div>
+        </div>       
+
+        <div th:replace="fragments/footer :: footer"></div>
+
+        <script type="text/javascript">
+        </script>
+
+    </body>
+
+</html>

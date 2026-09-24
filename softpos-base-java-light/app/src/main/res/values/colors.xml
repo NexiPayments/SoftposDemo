@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="color_item_selected">#A98B82</color>
+    <color name="color_item_focused">#673AB7</color>
+    <color name="color_background_activity">#44D072</color>
+    <color name="color_background_button">#B62616</color>
+</resources>

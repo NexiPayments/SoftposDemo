@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/color_background_activity"
+    tools:context=".activities.ReversalInsertValuesActivity"
+    android:orientation="vertical"
+    >
+
+    <TextView
+        android:id="@+id/textViewReversalHeader"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:text="Reversal inseert values - EVO"
+        android:textAlignment="center"
+        android:textSize="16sp"
+        android:textStyle="bold" />
+
+    <ScrollView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="20dp"
+        >
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/textInputLayoutTerminalIdReversal"
+                android:layout_width="@dimen/edittext_width"
+                android:layout_height="@dimen/edittext_height"
+                android:layout_marginTop="20dp"
+                android:hint="TerminalId">
+
+                <EditText
+                    android:id="@+id/editTextTerminalIdReversal"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:ems="10"
+                    android:enabled="false"
+                    android:inputType="none"
+
+                    />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/textInputLayoutAmountReversal"
+                android:layout_width="@dimen/edittext_width"
+                android:layout_height="@dimen/edittext_height"
+                android:layout_marginTop="@dimen/edittext_margin_top"
+                android:hint="Amount">
+
+                <EditText
+                    android:id="@+id/editTextAmountReversal"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:ems="10"
+                    android:enabled="false"
+                    android:inputType="none" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/textLayoutInputCallerTrxId"
+                android:layout_width="@dimen/edittext_width"
+                android:layout_height="@dimen/edittext_height"
+                android:layout_marginTop="@dimen/edittext_margin_top"
+                android:hint="callerTrxId">
+
+                <EditText
+                    android:id="@+id/editTextCallerTrxId"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:ems="10"
+                    android:inputType="text" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/textLayoutInputEmail"
+                android:layout_width="@dimen/edittext_width"
+                android:layout_height="@dimen/edittext_height"
+                android:layout_marginTop="@dimen/edittext_margin_top"
+                android:hint="Email">
+
+                <EditText
+                    android:id="@+id/editTextEmail"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:ems="10"
+                    android:inputType="text" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/edittext_margin_top"
+            android:orientation="horizontal"
+            >
+            <CheckBox
+                android:id="@+id/checkBoxAutoClose"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/checkbox_height"
+                android:checked="false"
+                android:text="AutoClose" />
+
+            <CheckBox
+                android:id="@+id/checkBoxUrlTicket"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/checkbox_height"
+                android:layout_marginLeft="5dp"
+                android:checked="false"
+                android:text="urlTicket" />
+
+            <CheckBox
+                android:id="@+id/checkBoxHideRetry"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/checkbox_height"
+                android:layout_marginLeft="5dp"
+                android:checked="false"
+                android:text="HiRe" />
+
+        </LinearLayout>
+
+            <Button
+                android:id="@+id/btnStartReversal"
+                android:layout_width="207dp"
+                android:layout_height="@dimen/button_height"
+                android:layout_marginTop="20dp"
+                android:layout_gravity="center"
+                android:backgroundTint="@color/color_background_button"
+                android:text="Reversal" />
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</LinearLayout>

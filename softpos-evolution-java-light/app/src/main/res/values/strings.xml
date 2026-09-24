@@ -1,0 +1,18 @@
+<resources>
+    <string name="app_name">SoftPos Evo Java Light</string>
+    <string name="payment_insert_valuesi_header">Payment insert values - EVO</string>
+    <string name="payment_insert_valuesi_amount">Amount</string>
+    <string name="payment_insert_values_tip_amount">Tip Amount</string>
+    <string name="payment_insert_values_callertrxid">callerTrxId</string>
+    <string name="payment_insert_values_email">Email</string>
+    <string name="payment_insert_values_add1">Add1</string>
+    <string name="payment_insert_values_sms">Sms</string>
+    <string name="payment_insert_values_add2">Add2</string>
+    <string name="payment_insert_values_add3">Add3</string>
+    <string name="payment_insert_values_add4">Add4</string>
+    <string name="payment_insert_valuies_add5">Add5</string>
+    <string name="payment_insert_values_checkbox_autoclose">AutoClose</string>
+    <string name="payment_insert_values_checkbox_urltick">urlTick</string>
+    <string name="payment_insert_values_checkbox_hire">HiRe</string>
+    <string name="payment_insert_values_button_start_payment">Payment</string>
+</resources>
