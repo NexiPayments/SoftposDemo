@@ -1,6 +1,7 @@
 HELP.md
 target/
-softPosB2B.db
+mvnw.cmd
+mvnw
 !.mvn/wrapper/maven-wrapper.jar
 !**/src/main/**/target/
 !**/src/test/**/target/

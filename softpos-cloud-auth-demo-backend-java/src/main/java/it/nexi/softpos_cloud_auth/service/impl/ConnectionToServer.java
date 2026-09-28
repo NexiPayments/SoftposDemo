@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package it.nexi.softpos_cloud_auth.service.impl;
 
 import static it.nexi.softpos_cloud_auth.constant.Constant.*;
@@ -58,16 +54,15 @@ public class ConnectionToServer implements IConnectionToServer{
             
             url = new URL(FQDN + API_POST_TOKEN);
             System.out.println("Call URL: " + url);
-            // apre la connessione
+            // Open Connection
             connection = (HttpsURLConnection) url.openConnection();
             if (connection != null) {
                 connection.setRequestMethod("POST");
-                //connection.setRequestProperty("Accept", "application/json");
                 connection.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
                 connection.setSSLSocketFactory(sslSocketFactory);
                 connection.setDoInput(true);
                 connection.setDoOutput(true);
-                // spedisce la richiesta
+                // send request
                 wr = connection.getOutputStream();
                 String requestParams = "grant_type=" + "client_credentials" + "&" +
                                        "client_id=" + APP_ID + "&" +
@@ -130,13 +125,10 @@ public class ConnectionToServer implements IConnectionToServer{
         OutputStream wr = null;
         BufferedReader reader = null;
         JWKSet jwkSet = null;
-        try {
-            // trasforma in json l'oggetto
-            // requestJson =  gson.toJson(requestObjectDTO);
-            // crea l'url            
+        try {        
             url = new URL(FQDN + API_GET_PUBLIC_KEY);
             System.out.println("Call URL: " + url);
-            // apre la connessione
+            // Open Connection
             connection = (HttpsURLConnection) url.openConnection();
             if (connection != null) {
                 connection.setRequestMethod("GET");
@@ -148,7 +140,6 @@ public class ConnectionToServer implements IConnectionToServer{
                 wr = connection.getOutputStream();
                 wr.flush();
                 wr.close();
-                // ottiene la risposta
                 // Get response code and handle response
                 if (connection.getResponseCode() == HttpsURLConnection.HTTP_OK) {
                     // Read response content
@@ -211,10 +202,9 @@ public class ConnectionToServer implements IConnectionToServer{
         OutputStream wr = null;
         BufferedReader reader = null;
         try {
-            // crea l'url
             url = new URL(FQDN + API_POST_PAR);
             System.out.println("Call URL: " + url);
-            // apre la connessione
+            // Open Connection
             connection = (HttpsURLConnection) url.openConnection();
             if (connection != null) {
                 connection.setRequestMethod("POST");
@@ -224,7 +214,7 @@ public class ConnectionToServer implements IConnectionToServer{
                 connection.setSSLSocketFactory(sslSocketFactory);
                 connection.setDoInput(true);
                 connection.setDoOutput(true);
-                // spedisce la richiesta
+                // Send Request
                 wr = connection.getOutputStream();
                 String requestParams = "client_assertion=" + clientAssertionSigned + "&" +
                                        "client_id=" + APP_ID  + "&" +

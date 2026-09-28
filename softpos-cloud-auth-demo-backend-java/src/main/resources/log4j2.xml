@@ -7,7 +7,7 @@
         
     <Appenders>        
         <RollingFile name="infoLog" fileName="${basePath}/softpos-backend-cloud-auth-java-info-${date:dd-MM-yyyy}.log"
-            filePattern="${basePath}/TestSoftPosB2B-info-%d{yyyy-MM-dd}-%i.log" >
+            filePattern="${basePath}/SoftPosCloudAuthBackend-info-%d{yyyy-MM-dd}-%i.log" >
             <LevelRangeFilter minLevel="INFO" maxLevel="INFO" onMatch="ACCEPT" onMismatch="DENY"/>
             <PatternLayout pattern="${LOG_PATTERN}"/>
             <Policies>
@@ -17,7 +17,7 @@
         </RollingFile>
          
         <RollingFile name="errorLog" fileName="${basePath}/softpos-backend-cloud-auth-java-error-${date:dd-MM-yyyy}.log"
-            filePattern="${basePath}/TestSoftPosB2B-error-%d{yyyy-MM-dd}-%i.log" >
+            filePattern="${basePath}/SoftPosCloudAuthBackend-error-%d{yyyy-MM-dd}-%i.log" >
             <LevelRangeFilter minLevel="ERROR" maxLevel="ERROR" onMatch="ACCEPT" onMismatch="DENY"/>
             <PatternLayout pattern="${LOG_PATTERN}"/>
             <Policies>
@@ -27,7 +27,7 @@
         </RollingFile>
         
          <RollingFile name="debugLog" fileName="${basePath}/softpos-backend-cloud-auth-java-debug-${date:dd-MM-yyyy}.log"
-            filePattern="${basePath}/TestSoftPosB2B-debug-%d{yyyy-MM-dd}-%i.log" >
+            filePattern="${basePath}/SoftPosCloudAuthBackend-debug-%d{yyyy-MM-dd}-%i.log" >
             <LevelRangeFilter minLevel="DEBUG" maxLevel="DEBUG" onMatch="ACCEPT" onMismatch="DENY"/>
             <PatternLayout pattern="${LOG_PATTERN}"/>
             <Policies>

@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package it.nexi.softpos_cloud_auth.service.impl;
 
 import it.nexi.softpos_cloud_auth.service.IUtilityService;
@@ -32,7 +28,7 @@ public class UtilityService implements IUtilityService {
         BufferedReader br = null;
         StringBuilder body = null;
         String line = "";
-        try {//  w  w w .j  a  v a 2s . c  o m
+        try {
             br = new BufferedReader(new InputStreamReader(
                     conn.getInputStream()));
             body = new StringBuilder();

@@ -1,6 +1,5 @@
 package it.nexi.softpos_cloud_auth.service;
 
-import java.io.InputStream;
 import javax.net.ssl.HttpsURLConnection;
 
 /**
