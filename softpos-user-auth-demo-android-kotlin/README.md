@@ -1,6 +1,6 @@
-# SoftPOS Base Kotlin demo
+# SoftPOS User Authetication Kotlin demo
 
-> Nexi integration for SoftPos Base payments using kotlin.
+> Nexi integration for SoftPos User Authetication payments using kotlin.
 ---
 
 ## 1. Introduction
@@ -26,4 +26,4 @@ Transaction results are communicated by Nexi POS to the calling app via deep lin
 - **Hardware**: Physical device with NFC support required (emulators are not supported).
 
 ---
-*Developed for Nexi SoftPOS Base integration.*
+*Developed for Nexi SoftPOS User Authetication integration.*
