@@ -1,6 +1,6 @@
-# SoftPOS Evolution Java Demo
+# SoftPOS Cloud Authentication Java Demo
 
-> Nexi SDK integration for SoftPos Evolution payments using Java.
+> Nexi SDK integration for SoftPos Cloud Authentication payments using Java.
 
 ---
 
@@ -49,4 +49,4 @@ The project follows a **reactive** model based on `LiveData`:
 - **Hardware**: Physical device with NFC support required (emulators are not supported).
 
 ---
-*Developed for Nexi SoftPOS Evolution integration.*
+*Developed for Nexi SoftPOS Cloud Authentication integration.*
