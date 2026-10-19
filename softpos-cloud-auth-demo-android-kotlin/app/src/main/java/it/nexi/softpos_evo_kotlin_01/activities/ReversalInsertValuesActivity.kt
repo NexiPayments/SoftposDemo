@@ -1,7 +1,6 @@
 package it.nexi.softpos_evo_kotlin_01.activities
 
 import android.os.Bundle
-import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
@@ -37,13 +36,18 @@ class ReversalInsertValuesActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         val amount          = PreferencesServvice.getAmount(this)
+        val tipAmount       = PreferencesServvice.getTipAmount(this)
+        val totalAmount     = PreferencesServvice.getTotalAmount(this)
         val terminalId      = PreferencesServvice.getTerminalId(this)
-        val stringaAmount   = amount?.toString() ?:""
-
-        binding.editTextAmountReversal.setText(amount.toEuroFormat())
-        binding.editTextTerminalIdReversal.setText(terminalId)
+        val stringAmount    = amount?.toString() ?:""
+        val stringTipAmount = tipAmount?.toString() ?:""
 
         with(binding) {
+
+            editTextAmountReversal.setText(amount.toEuroFormat())
+            editTextTipAmount.setText(tipAmount.toEuroFormat())
+            editTextTotalAmount.setText(totalAmount.toEuroFormat())
+            editTextTerminalIdReversal.setText(terminalId)
 
             btnStartReversal.setOnClickListener {
 
@@ -57,8 +61,9 @@ class ReversalInsertValuesActivity : AppCompatActivity() {
 
                 val isSendTicket    = !autoClose
 
+                val isTipEnabled    = false
 
-                if (terminalId.isEmpty() || stringaAmount.isEmpty()) {
+                if (terminalId.isEmpty() || stringAmount.isEmpty()) {
 
                     showInfoAlert(context = this@ReversalInsertValuesActivity,
                                   titolo = "Mandatory fields",
@@ -69,11 +74,22 @@ class ReversalInsertValuesActivity : AppCompatActivity() {
 
                 }
 
+                if (callerTrxId.isEmpty()) {
+
+                    showInfoAlert(context = this@ReversalInsertValuesActivity,
+                        titolo = "Mandatory fields",
+                        messaggio = "callerTrxId, cannot be empty"
+                    )
+
+                    return@setOnClickListener
+
+                }
+
                 val timeStamp = getCurrentTimestamp()
                 val sms = ""
 
                 // Creating the data object for the sdk
-                val reversalData = ReversalData(stringaAmount,
+                val reversalData = ReversalData(stringAmount,
                                                 timeStamp,
                                                 Constant.CALLER_NAME,
                                                 email,
@@ -82,6 +98,8 @@ class ReversalInsertValuesActivity : AppCompatActivity() {
                                                 terminalId,
                                                 isSendTicket,
                                                 isUrlTicket,
+                                                isTipEnabled,
+                                                stringTipAmount,
                                                 autoClose,
                                                 hideRetray
                                                )

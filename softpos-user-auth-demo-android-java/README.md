@@ -1,6 +1,6 @@
-# SoftPOS Base Java demo
+# SoftPOS User Authentication Java demo
 
-> Nexi integration for SoftPos Base payments using Java.
+> Nexi integration for SoftPos User Authentication payments using Java.
 ---
 
 ## 1. Introduction
@@ -26,4 +26,4 @@ Transaction results are communicated by Nexi POS to the calling app via deep lin
 - **Hardware**: Physical device with NFC support required (emulators are not supported).
 
 ---
-*Developed for Nexi SoftPOS Base integration.*
+*Developed for Nexi SoftPOS User Authentication integration.*

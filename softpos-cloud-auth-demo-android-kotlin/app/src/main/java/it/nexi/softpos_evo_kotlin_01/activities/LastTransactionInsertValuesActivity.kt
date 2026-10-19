@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import it.nexi.softpos_evo_kotlin_01.domain.Constant
 import it.nexi.softpos_evo_kotlin_01.commons.LoadingDialog
+import it.nexi.softpos_evo_kotlin_01.commons.getRandomCallerTrxId
 import it.nexi.softpos_evo_kotlin_01.services.SDKNexiService
 import it.nexi.softpos_evo_kotlin_01.services.PreferencesServvice
 import it.nexi.softpos_evo_kotlin_01.commons.showInfoAlert
@@ -37,6 +38,9 @@ class LastTransactionInsertValuesActivity : AppCompatActivity() {
         binding.editTextTerminalId.setText(terminalId)
 
         setContentView(binding.root)
+
+        val callerTrxId = getRandomCallerTrxId()
+        binding.editTextCallerTrxId.setText(callerTrxId)
 
         binding.btnStartLastTransaction.setOnClickListener {
 

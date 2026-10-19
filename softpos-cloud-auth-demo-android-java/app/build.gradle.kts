@@ -10,8 +10,8 @@ android {
         applicationId = "it.nexi.softpos_evo_java_light"
         minSdk = 29
         targetSdk = 34
-        versionCode = 1
-        versionName = "1.0.0 sdk-1.3.6 release"
+        versionCode = 2
+        versionName = "1.5.0 sdk-1.3.6 release"
 
             }
 

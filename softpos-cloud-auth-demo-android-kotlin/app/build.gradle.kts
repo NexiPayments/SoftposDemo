@@ -12,8 +12,8 @@ android {
         applicationId = "it.nexi.softpos_evo_kotlin_01"
         minSdk = 24
         targetSdk = 35
-        versionCode = 3
-        versionName = "1.7"
+        versionCode = 4
+        versionName = "2.0.0 sdk-1.3.6 release"
 
 
     }
@@ -40,11 +40,10 @@ android {
     }
 }
 
-
 dependencies {
 
     // start - implementation custom
-    implementation(files("libs/app2app-1.3.3-release.aar"))
+    implementation(files("libs/app2app-1.3.6-release.aar"))
     implementation(files("libs/commons-io-2.5.jar"))
 
     implementation("com.google.code.gson:gson:2.12.1")

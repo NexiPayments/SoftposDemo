@@ -37,11 +37,14 @@ object Constant {
     const val CALLER_NAME                                                                           = "SOFTPOS_TEST"
 
     // TAG for log
-    const val TAG_SOFTPOS_EVO_KOTLIN                                                                = "TAG_SOFTPOS_EVO_KOTLIN"
+    const val TAG_SOFTPOS_CLOUD_AUTH_KOTLIN                                                         = "TAG_SOFTPOS_CLOUD_AUTH_KOTLIN"
 
     // Keys App preferences
     const val PREFS_NAME                                                                            = "AppKotlinTestPreferences"
-    const val KEY_AMUOUNT                                                                           = "amount"
+    const val KEY_AMOUNT
+    = "amount"
+    const val KEY_TIP_AMOUNT                                                                        = "tipAmount"
+    const val KEY_TOTAL_AMOUNT                                                                      = "totalAmount"
     const val KEY_TERMINAL_ID                                                                       = "terminalId"
 
     // SDK methods

@@ -1,6 +1,6 @@
-# SoftPOS Evolution Kotlin Demo
+# SoftPOS Cloud Authentication Kotlin Demo
 
-> Nexi SDK integration for SoftPos Evolution payments using kotlin.
+> Nexi SDK integration for SoftPos Cloud Authentication payments using kotlin.
 
 ---
 
@@ -49,4 +49,4 @@ The project follows a **reactive** model based on `LiveData`:
 - **Hardware**: Physical device with NFC support required (emulators are not supported).
 
 ---
-*Developed for Nexi SoftPOS Evolution integration.*
+*Developed for Nexi SoftPOS Cloud Authentication integration.*

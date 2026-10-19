@@ -4,11 +4,14 @@ import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
-import it.nexi.softpos_evo_kotlin_01.domain.Constant
 import it.nexi.softpos_evo_kotlin_01.commons.LoadingDialog
-import it.nexi.softpos_evo_kotlin_01.services.SDKNexiService
+import it.nexi.softpos_evo_kotlin_01.commons.convertAmountForPos
+import it.nexi.softpos_evo_kotlin_01.commons.getRandomAmount
+import it.nexi.softpos_evo_kotlin_01.commons.getRandomCallerTrxId
 import it.nexi.softpos_evo_kotlin_01.commons.showInfoAlert
 import it.nexi.softpos_evo_kotlin_01.databinding.ActivityPaymentInsertValuesBinding
+import it.nexi.softpos_evo_kotlin_01.domain.Constant
+import it.nexi.softpos_evo_kotlin_01.services.SDKNexiService
 import it.nexipos.app2app.data.model.PaymentData
 import kotlinx.coroutines.launch
 
@@ -34,36 +37,44 @@ class PaymentInsertValuesActivity : AppCompatActivity() {
 
         with(binding) {
 
+            val amountRandom = getRandomAmount()
+            val callerTrxId = getRandomCallerTrxId()
+
+            editTextAmount.setText(amountRandom)
+            editTextCallerTrxId.setText(callerTrxId)
+            editTextAddInfo1.setText(callerTrxId)
+
+            checkBoxTipEnabled.setOnCheckedChangeListener { _, isChecked ->
+
+                textInputLayoutTipAmount.isEnabled = !isChecked
+                textInputLayoutTipAmount.alpha = if (isChecked) 0.5f else 1.0f
+
+                if (isChecked) editTextTipAmount.setText("")
+
+            }
+
             btnStartPayment.setOnClickListener {
 
-                val autoClose   = checkBoxAutoClose.isChecked
-                val isUrlTicket = checkBoxUrlTicket.isChecked
-                val hideRetry   = checkBoxHideRetry.isChecked
-                val rawAmount   = editTextAmount.text.toString()
-                val email       = editTextEmail.text.toString()
-                val sms         = editTextSms.text.toString()
-                val callerTrxId = editTextCallerTrxId.text.toString()
+                val autoClose       = checkBoxAutoClose.isChecked
+                val isUrlTicket     = checkBoxUrlTicket.isChecked
+                val hideRetry       = checkBoxHideRetry.isChecked
+                val amount          = editTextAmount.text.toString()
+                val isTipEnabled    = checkBoxTipEnabled.isChecked
+                val tipAmount       = editTextTipAmount.text.toString()
+                val email           = editTextEmail.text.toString()
+                val sms             = editTextSms.text.toString()
+                val callerTrxId     = editTextCallerTrxId.text.toString()
 
-                val addInfo1    = editTextAddInfo1.text.toString()
-                val addInfo2    = editTextAddInfo2.text.toString()
-                val addInfo3    = editTextAddInfo3.text.toString()
-                val addInfo4    = editTextAddInfo4.text.toString()
-                val addInfo5    = editTextAddInfo5.text.toString()
+                val addInfo1        = editTextAddInfo1.text.toString()
+                val addInfo2        = editTextAddInfo2.text.toString()
+                val addInfo3        = editTextAddInfo3.text.toString()
+                val addInfo4        = editTextAddInfo4.text.toString()
+                val addInfo5        = editTextAddInfo5.text.toString()
 
                 val isSendTicket = !autoClose
 
-                var finalAmount = ""
 
-                val amountDouble = rawAmount.toDoubleOrNull() ?: 0.0
-
-                if (amountDouble > 0.0) {
-
-                    val formatted = String.format(java.util.Locale.ITALY, "%.2f", amountDouble)
-
-                    finalAmount = formatted.replace(".", "").replace(",", "")
-                }
-
-                if (finalAmount.isEmpty() || callerTrxId.isEmpty()) {
+                if (amount.isEmpty() || callerTrxId.isEmpty()) {
 
                     showInfoAlert(
                         context = this@PaymentInsertValuesActivity,
@@ -75,8 +86,11 @@ class PaymentInsertValuesActivity : AppCompatActivity() {
 
                 }
 
+                val amountForPos: String = convertAmountForPos(amount)
+                val tipAmountForPos = if (tipAmount.isEmpty()) "" else convertAmountForPos(tipAmount)
+
                 // Creating the data object for the sdk
-                val paymentData  = getPaymentData(finalAmount,
+                val paymentData  = getPaymentData(amountForPos,
                                                   callerTrxId,
                                                   isSendTicket,
                                                   isUrlTicket,
@@ -89,7 +103,9 @@ class PaymentInsertValuesActivity : AppCompatActivity() {
                                                   email,
                                                   sms,
                                                   autoClose,
-                                                hideRetry
+                                                hideRetry,
+                                                 isTipEnabled,
+                                                 tipAmountForPos
                                                  )
 
                 // starts the sdk method.
@@ -159,7 +175,9 @@ class PaymentInsertValuesActivity : AppCompatActivity() {
                                email: String,
                                sms: String,
                                autoClose: Boolean,
-                               hideRetray : Boolean
+                               hideRetray : Boolean,
+                               isTipEnabled : Boolean,
+                               tipAmount : String
                               ) : PaymentData {
 
         val mapAddInfo = mutableMapOf<String, String>()
@@ -170,10 +188,14 @@ class PaymentInsertValuesActivity : AppCompatActivity() {
         if (!addInfo4.isNullOrEmpty()) mapAddInfo["addInfo4"] = addInfo4
         if (!addInfo5.isNullOrEmpty()) mapAddInfo["addInfo5"] = addInfo5
 
+
+
         return PaymentData(amount,
                            callerTrxId,
                            isSendTicket,
                            isUrlTicket,
+                           isTipEnabled,
+                           tipAmount,
                            callerName,
                         mapAddInfo,
                            email,

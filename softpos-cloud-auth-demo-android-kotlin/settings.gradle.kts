@@ -22,5 +22,5 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "softpos-evo-kotlin-01"
+rootProject.name = "Softpos CloudAuth Demo Kotlin"
 include(":app")

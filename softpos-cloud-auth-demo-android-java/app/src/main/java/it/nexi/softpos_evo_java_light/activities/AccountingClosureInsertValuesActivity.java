@@ -33,6 +33,9 @@ public class AccountingClosureInsertValuesActivity extends AppCompatActivity {
 
         setContentView(binding.getRoot());
 
+        String callerTrxIdRandom = Utils.getRandomCallerTrxId();
+        binding.editTextCallerTrxId.setText(callerTrxIdRandom);
+
         binding.btnStartCloseAccountingClosure.setOnClickListener(v -> {
 
             String callerTrxId      = binding.editTextCallerTrxId.getText().toString();

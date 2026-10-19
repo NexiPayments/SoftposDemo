@@ -15,7 +15,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="50dp"
-        android:text="Reversal insert values - EVO"
+        android:text="Reversal insert values"
         android:textAlignment="center"
         android:textSize="16sp"
         android:textStyle="bold" />

@@ -15,7 +15,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="50dp"
-        android:text="Reversal inseert values - EVO"
+        android:text="Reversal inseert values - Cloud Auth"
         android:textAlignment="center"
         android:textSize="16sp"
         android:textStyle="bold" />
@@ -68,6 +68,41 @@
 
             </com.google.android.material.textfield.TextInputLayout>
 
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/textInputLayoutTipAmountReversal"
+                android:layout_width="300dp"
+                android:layout_height="74dp"
+                android:layout_marginTop="10dp"
+                android:layout_gravity="center"
+                android:hint="Tip Amount">
+
+                <EditText
+                    android:id="@+id/editTextTipAmount"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:ems="10"
+                    android:enabled="false"
+                    android:inputType="none" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/textInputLayoutTotalAmountReversal"
+                android:layout_width="300dp"
+                android:layout_height="60dp"
+                android:layout_marginTop="10dp"
+                android:layout_gravity="center"
+                android:hint="TotalAmount">
+
+                <EditText
+                    android:id="@+id/editTextTotalAmount"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:ems="10"
+                    android:enabled="false"
+                    android:inputType="none" />
+
+            </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/textLayoutInputCallerTrxId"

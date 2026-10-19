@@ -98,14 +98,14 @@ object SDKNexiService {
 
                                 LoadingDialog.show(activity)
 
-                                Log.d(Constant.TAG_SOFTPOS_EVO_KOTLIN, "Initiating backend communication – requestUri")
+                                Log.d(Constant.TAG_SOFTPOS_CLOUD_AUTH_KOTLIN, "Initiating backend communication – requestUri")
 
                                 // request_uri, request to backend
                                 val requestUri = BackendService.getRequestUri(deviceId = deviceId)
 
                                 LoadingDialog.hide()
 
-                                Log.d(Constant.TAG_SOFTPOS_EVO_KOTLIN, "result requestUri: $requestUri")
+                                Log.d(Constant.TAG_SOFTPOS_CLOUD_AUTH_KOTLIN, "result requestUri: $requestUri")
 
                                 if (!requestUri.isNullOrEmpty()) {
 
@@ -150,14 +150,14 @@ object SDKNexiService {
                             // (see later in the code),
                             // the SDK returns the connection status.
 
-                            Log.d(Constant.TAG_SOFTPOS_EVO_KOTLIN, "onConnectionEvent : ${connectionEvent.type}")
+                            Log.d(Constant.TAG_SOFTPOS_CLOUD_AUTH_KOTLIN, "onConnectionEvent : ${connectionEvent.type}")
 
                             when (connectionEvent.type) {
 
                                 ConnectionEvent.EventType.READY -> {
 
                                     Log.d(
-                                        Constant.TAG_SOFTPOS_EVO_KOTLIN,
+                                        Constant.TAG_SOFTPOS_CLOUD_AUTH_KOTLIN,
                                         "READY"
 
                                     )
@@ -193,7 +193,7 @@ object SDKNexiService {
                                 else -> {
 
                                     Log.d(
-                                        Constant.TAG_SOFTPOS_EVO_KOTLIN,
+                                        Constant.TAG_SOFTPOS_CLOUD_AUTH_KOTLIN,
                                         "unhandled event: ${connectionEvent.type}"
                                     )
 
@@ -210,7 +210,7 @@ object SDKNexiService {
 
                 ) // app2AppIPC = App2AppIPC(
 
-                Log.d(Constant.TAG_SOFTPOS_EVO_KOTLIN, "connectToRemoteService")
+                Log.d(Constant.TAG_SOFTPOS_CLOUD_AUTH_KOTLIN, "connectToRemoteService")
 
                 // starts the connection with the SDK.
                 // The outcome of the operation can be checked in the ConnectionEvent.
@@ -242,7 +242,7 @@ object SDKNexiService {
                     override fun onSuccess(response: A2ASDKResponse?) {
 
                         // The operation was successful.
-                        Log.d(Constant.TAG_SOFTPOS_EVO_KOTLIN, "app2AppIPC.pay-> onSuccess() : ${response}")
+                        Log.d(Constant.TAG_SOFTPOS_CLOUD_AUTH_KOTLIN, "app2AppIPC.pay-> onSuccess() : ${response}")
 
                         // Send the operation result
                         _operationResult.value = OperationResult(isSuccess = true,
@@ -256,7 +256,7 @@ object SDKNexiService {
                         // The operation had a negative outcome.
                         val errorMessage = formatA2AError(error)
 
-                        Log.e(Constant.TAG_SOFTPOS_EVO_KOTLIN, "app2AppIPC.pay -> onFailure() : ${errorMessage}")
+                        Log.e(Constant.TAG_SOFTPOS_CLOUD_AUTH_KOTLIN, "app2AppIPC.pay -> onFailure() : ${errorMessage}")
 
                         // Send the operation result
                         _operationResult.value = OperationResult(isSuccess = false,
@@ -271,7 +271,7 @@ object SDKNexiService {
 
         } catch (e: Exception) {
 
-            Log.e(Constant.TAG_SOFTPOS_EVO_KOTLIN, "app2AppIPC.pay -> exception : ${e.message}")
+            Log.e(Constant.TAG_SOFTPOS_CLOUD_AUTH_KOTLIN, "app2AppIPC.pay -> exception : ${e.message}")
 
             _operationResult.value = OperationResult(isSuccess = false,
                                                      description = "Payment -> exception : ${e.message}"
@@ -297,7 +297,7 @@ object SDKNexiService {
                     override fun onSuccess(response: A2ASDKResponse?) {
 
                         // The operation was successful.
-                        Log.d(Constant.TAG_SOFTPOS_EVO_KOTLIN, "app2AppIPC.revert-> onSuccess() : ${response}")
+                        Log.d(Constant.TAG_SOFTPOS_CLOUD_AUTH_KOTLIN, "app2AppIPC.revert-> onSuccess() : ${response}")
 
                         // Send the operation result
                         _operationResult.value = OperationResult(isSuccess = true,
@@ -311,7 +311,7 @@ object SDKNexiService {
                         // The operation had a negative outcome.
                         val messaggioErrore = formatA2AError(error)
 
-                        Log.e(Constant.TAG_SOFTPOS_EVO_KOTLIN, "app2AppIPC.revert -> onFailure() : ${messaggioErrore}")
+                        Log.e(Constant.TAG_SOFTPOS_CLOUD_AUTH_KOTLIN, "app2AppIPC.revert -> onFailure() : ${messaggioErrore}")
 
                         // Send the operation result
                         _operationResult.value = OperationResult(isSuccess = false,
@@ -326,7 +326,7 @@ object SDKNexiService {
 
         } catch (e: Exception) {
 
-            Log.e(Constant.TAG_SOFTPOS_EVO_KOTLIN, "app2AppIPC.revert -> exception : ${e.message}")
+            Log.e(Constant.TAG_SOFTPOS_CLOUD_AUTH_KOTLIN, "app2AppIPC.revert -> exception : ${e.message}")
 
             // Send the operation result
             _operationResult.value = OperationResult(isSuccess = false,
@@ -353,7 +353,7 @@ object SDKNexiService {
                     override fun onSuccess(response: A2ASDKResponse?) {
 
                         // The operation was successful.
-                        Log.d(Constant.TAG_SOFTPOS_EVO_KOTLIN, "app2AppIPC.getLastTransaction-> onSuccess() : ${response}")
+                        Log.d(Constant.TAG_SOFTPOS_CLOUD_AUTH_KOTLIN, "app2AppIPC.getLastTransaction-> onSuccess() : ${response}")
 
                         // Send the operation result
                         _operationResult.value = OperationResult(isSuccess = true,
@@ -367,7 +367,7 @@ object SDKNexiService {
                         // The operation had a negative outcome.
                         val errorMessage = formatA2AError(error)
 
-                        Log.e(Constant.TAG_SOFTPOS_EVO_KOTLIN, "app2AppIPC.GetLastTransaction -> onFailure() : ${errorMessage}")
+                        Log.e(Constant.TAG_SOFTPOS_CLOUD_AUTH_KOTLIN, "app2AppIPC.GetLastTransaction -> onFailure() : ${errorMessage}")
 
                         // Send the operation result
                         _operationResult.value = OperationResult(isSuccess = false,
@@ -382,7 +382,7 @@ object SDKNexiService {
 
         } catch (e: Exception) {
 
-            Log.e(Constant.TAG_SOFTPOS_EVO_KOTLIN, "app2AppIPC.getLastTransaction-> exception : ${e.message}")
+            Log.e(Constant.TAG_SOFTPOS_CLOUD_AUTH_KOTLIN, "app2AppIPC.getLastTransaction-> exception : ${e.message}")
 
             // Send the operation result
             _operationResult.value = OperationResult(isSuccess = false,
@@ -409,7 +409,7 @@ object SDKNexiService {
                 override fun onSuccess(response: A2ASDKResponse?) {
 
                     // The operation was successful.
-                    Log.d(Constant.TAG_SOFTPOS_EVO_KOTLIN, "app2AppIPC.closeAccount-> onSuccess() : ${response}")
+                    Log.d(Constant.TAG_SOFTPOS_CLOUD_AUTH_KOTLIN, "app2AppIPC.closeAccount-> onSuccess() : ${response}")
 
                     // Send the operation result
                     _operationResult.value = OperationResult(isSuccess = true,
@@ -423,7 +423,7 @@ object SDKNexiService {
                     // The operation had a negative outcome.
                     val errorMessage = formatA2AError(error)
 
-                    Log.e(Constant.TAG_SOFTPOS_EVO_KOTLIN, "app2AppIPC.closeAccount -> onFailure() : ${errorMessage}")
+                    Log.e(Constant.TAG_SOFTPOS_CLOUD_AUTH_KOTLIN, "app2AppIPC.closeAccount -> onFailure() : ${errorMessage}")
 
                     // Send the operation result
                     _operationResult.value = OperationResult(isSuccess = false,
@@ -438,7 +438,7 @@ object SDKNexiService {
 
         } catch (e: Exception) {
 
-            Log.e(Constant.TAG_SOFTPOS_EVO_KOTLIN, "app2AppIPC.closeAccount-> exception : ${e.message}")
+            Log.e(Constant.TAG_SOFTPOS_CLOUD_AUTH_KOTLIN, "app2AppIPC.closeAccount-> exception : ${e.message}")
 
             // Send the operation result
             _operationResult.value = OperationResult(isSuccess = false,

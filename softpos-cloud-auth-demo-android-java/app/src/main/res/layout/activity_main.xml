@@ -14,7 +14,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
-        android:text="Test Sofpos EVO - Java light"
+        android:text="Sofpos Cloud Auth Demo Java"
         android:textAlignment="center"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
         android:textStyle="bold"
@@ -34,7 +34,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="40dp"
         >
 
         <LinearLayout
@@ -55,6 +55,7 @@
                 android:id="@+id/btnReversal"
                 android:layout_width="150dp"
                 android:layout_height="@dimen/button_height"
+                android:layout_marginTop="10dp"
                 android:backgroundTint="@color/color_background_button"
                 android:text="Reversal" />
 
@@ -62,6 +63,7 @@
                 android:id="@+id/btnLastTransaction"
                 android:layout_width="150dp"
                 android:layout_height="@dimen/button_height"
+                android:layout_marginTop="10dp"
                 android:backgroundTint="@color/color_background_button"
                 android:text="Last trans" />
 
@@ -69,6 +71,7 @@
                 android:id="@+id/btnCloseAccount"
                 android:layout_width="150dp"
                 android:layout_height="@dimen/button_height"
+                android:layout_marginTop="10dp"
                 android:backgroundTint="@color/color_background_button"
                 android:text="CloseAccount" />
 

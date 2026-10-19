@@ -2,6 +2,7 @@ package it.nexi.softpos_evo_java_light.activities;
 
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.CompoundButton;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -48,6 +49,44 @@ public class PaymentInsertValuesActivity extends AppCompatActivity {
 
         String amountRandom = Utils.getRandomAmount();
         binding.editTextAmount.setText(amountRandom);
+
+        binding.checkBoxTipEnabled.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+
+                if (isChecked) {
+
+                    binding.textInputLayoutTipAmount.setEnabled(false);
+                    binding.textInputLayoutTipAmount.setAlpha(0.5f);
+                    binding.editTextTipAmount.setText("");
+
+                } else {
+
+                    binding.textInputLayoutTipAmount.setEnabled(true);
+                    binding.textInputLayoutTipAmount.setAlpha(1.0f);
+                }
+
+            }
+        });
+
+        binding.checkBoxTipEnabled.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+
+                if (isChecked) {
+
+                    binding.textInputLayoutTipAmount.setEnabled(false);
+                    binding.textInputLayoutTipAmount.setAlpha(0.5f);
+                    binding.editTextTipAmount.setText("");
+
+                } else {
+
+                    binding.textInputLayoutTipAmount.setEnabled(true);
+                    binding.textInputLayoutTipAmount.setAlpha(1.0f);
+                }
+
+            }
+        });
 
         binding.btnStartPayment.setOnClickListener(v -> {
 

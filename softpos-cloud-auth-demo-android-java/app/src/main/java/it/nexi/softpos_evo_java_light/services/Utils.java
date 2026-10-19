@@ -245,7 +245,7 @@ public class Utils {
             return "0";
         }
 
-    } // public static String convertiImportoPerPOS(String importoDigitato) {
+    } // public static String convertAmountForPos
 
     /**
      *

@@ -16,7 +16,7 @@
         android:layout_height="32dp"
         android:layout_marginTop="40dp"
         android:layout_gravity="center"
-        android:text="Spoftpos Base Java Light"
+        android:text="Softpos UserAuth Demo Java"
         android:textAlignment="center"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
         android:textStyle="bold" />

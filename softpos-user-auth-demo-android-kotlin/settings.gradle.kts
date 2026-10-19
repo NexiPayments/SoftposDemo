@@ -24,5 +24,5 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "SoftposBaseKotlinDemo01"
+rootProject.name = "Softpos UserAuth Demo Kotlin"
 include(":app")

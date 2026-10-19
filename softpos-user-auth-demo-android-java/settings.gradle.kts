@@ -19,5 +19,5 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "Softpos Base Java Light"
+rootProject.name = "Softpos UserAuth Demo Java"
 include(":app")

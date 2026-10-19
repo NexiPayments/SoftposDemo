@@ -176,7 +176,7 @@ public class SDKNexiService {
                                 case CONNECTED :
 
                                     // Notifies the connected activity that the SDK is CONNECTED but not READY
-                                    updateResult(new OperationResult(false, "CONNECTED but not READY: " + connectionEvent.getType()));
+                                    updateResult(new OperationResult(true, "CONNECTED: " + connectionEvent.getType()));
                                     break;
 
                                 case DISCONNECTED:

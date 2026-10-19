@@ -14,7 +14,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="50dp"
-        android:text="Result transaction - EVO"
+        android:text="Result transaction - Cloud Auth"
         android:textAlignment="center"
         android:textSize="16sp"
         android:textStyle="bold"

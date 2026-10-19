@@ -111,6 +111,8 @@ class ResultTransactionActivity : AppCompatActivity() {
         val operationType: String?          = uri.getQueryParameter("operationType")
         val result: String?                 = uri.getQueryParameter("result")
         val amount: String?                 = uri.getQueryParameter("amount")
+        val tipAmount: String?              = uri.getQueryParameter("tipAmount")
+        val totalAmount: String?            = uri.getQueryParameter("totalAmount")
         val actionCode: String?             = uri.getQueryParameter("actionCode")
         val pan: String?                    = uri.getQueryParameter("pan")
         val transactionType: String?        = uri.getQueryParameter("transactionType")
@@ -127,9 +129,16 @@ class ResultTransactionActivity : AppCompatActivity() {
         val urlTicket: String?              = uri.getQueryParameter("urlTicket")
         val autoClose: String?              = uri.getQueryParameter("autoClose")
 
-        val amountInt = amount?.toIntOrNull()
+        val amountInt       = amount?.toIntOrNull()
+        val tipAmountInt    = tipAmount?.toIntOrNull()
+        val totalAmountInt  = totalAmount?.toIntOrNull()
 
-        PreferencesServvice.savePaymentData(this,amountInt,terminalID)
+        PreferencesServvice.savePaymentData(this,
+                                            amountInt,
+                                            tipAmountInt,
+                                            totalAmountInt,
+                                            terminalID
+                                           )
 
     } // fun parseSoftPosResponsePayment
 
