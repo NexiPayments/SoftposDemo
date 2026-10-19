@@ -1,14 +1,14 @@
-//
-//  InitialView.swift
-//  SwiftUI_25-08-30_02_ AppIntercom
-//
-//  Created by MAC-01 on 30/08/25.
-//
-
 import SwiftUI
 
 var componentsPayment = URLComponents()
 
+/**
+ *
+ * Nexi Payments
+ *
+ * Manages the execution of the Payment method
+ *
+ */
 struct PaymentView: View {
     
     @Environment(\.openURL) var openURL
@@ -26,8 +26,8 @@ struct PaymentView: View {
     @State var addoInfo4    : String = ""
     @State var addoInfo5    : String = ""
     
-    // Proprietà calcolata per la validazion del form
-    // i campi amount e callerTrxId devono essere valorizzati
+    // Computed property for form validation
+    // The amount and callerTrxId fields must be populated
     private var isFormValid: Bool {
         
         let amountValido = !amount.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty
@@ -51,16 +51,16 @@ struct PaymentView: View {
                     .focused($isTextFieldAmountFocused)
                     .onChange(of: amount) { oldValue, newValue in
                     
-                        validaAmount(newValue: amount)
+                        amountValidation(newValue: amount)
                         
                     } //
                     .onChange(of: isTextFieldAmountFocused) {
                         
-                        // Questo blocco viene eseguito QUANDO il focus cambia
+                        // This block is executed WHEN the focus changes
                         if !isTextFieldAmountFocused {
                             
-                            // Se il campo non è più attivo, formattiamo il numero
-                            formattaValore()
+                            // If the field is no longer active, format the number
+                            formatAmountValue()
                             
                         }
                     }
@@ -110,12 +110,12 @@ struct PaymentView: View {
             } // Form
             .padding(.top, -30)
             .toolbar {
-                // Aggiunge un pulsante per chiudere la tastiera
+                // Adds a button to close the keyboard
                 ToolbarItemGroup(placement: .keyboard) {
                     
                     Spacer()
                     
-                    Button("Fatto") {
+                    Button("Done") {
                         // Nasconde la tastiera
                         UIApplication
                             .shared.sendAction(#selector(UIResponder
@@ -143,97 +143,85 @@ struct PaymentView: View {
         } // VStack
         .applyDemoBackground()
          
-          // Se l'utente clicca su una zona nella quale
-          // non ci sono campi di inserimento, la tastiera viene nascosta
+        // If the user clicks on an area where
+        // there are no input fields, the keyboard is hidden
         .onTapGesture {
             hideKeyboard()
             isTextFieldFocused = false
         }
         .navigationTitle("Payment")
-        // Applica il modificatore per ignorare l'area sicura della tastiera
+        // Apply the modifier to ignore the keyboard safe area
         .ignoresSafeArea(.keyboard)
         
     } // body
     
-    private func validaAmount(newValue: String) {
-           
-        // Ottiene il separatore decimale corretto per le impostazioni locali
+    /**
+     *
+     * handles the validation of the content of the 'amount' field
+     *
+     */
+    private func amountValidation(newValue: String) {
+       
         let decimalSeparator = Locale.current.decimalSeparator ?? "."
            
-        // 1. Filtra l'input per mantenere solo i numeri e il separatore
         var valueFiltered = newValue.filter { "0123456789".contains($0) || String($0) == decimalSeparator }
            
-        // 2. Gestisce la presenza di più separatori decimali
         let components = valueFiltered.components(separatedBy: decimalSeparator)
            
-        // Se ci sono più di 2 componenti, significa che è stato inserito più di un separatore
-        // Esempio: "12,34,56" -> componenti = ["12", "34", "56"] (conteggio = 3)
         if components.count > 2 {
             
-            // Ricostruisce la stringa mantenendo solo il primo separatore
             let parteIntera = components[0]
             let parteDecimale = components.dropFirst().joined()
             
             valueFiltered = "\(parteIntera)\(decimalSeparator)\(parteDecimale)"
         }
            
-        // 3. Aggiorna la variabile @State solo se il valore è effettivamente cambiato.
-        // Questo evita un ciclo infinito di aggiornamenti.
         if valueFiltered != self.amount {
            self.amount = valueFiltered
         }
         
-    } // func validaAmount(newValue: String)
+    } // func amountValidation(newValue: String)
     
-    private func formattaValore() {
+    private func formatAmountValue() {
         
-        // Se la stringa è vuota, non facciamo nulla
         guard !amount.isEmpty else { return }
         
         let formatter = NumberFormatter()
         formatter.numberStyle = .decimal
-        
-        // Impostiamo la localizzazione del formattatore a quella corrente del dispositivo
-        // per interpretare correttamente sia "," che "." come separatore.
+    
         formatter.locale = Locale.current
         
-        // Tentiamo di convertire la stringa in un numero
         guard let numero = formatter.number(from: amount)
         else { return }
-        
-        // Se il valore numerico è 0 (l'utente ha inserito "0", "0,0", ecc.)
-        // impostiamo la stringa a vuoto e usciamo dalla funzione.
-        // Questo farà apparire il placeholder "valore".
+    
         if numero.doubleValue == 0 {
             self.amount = ""
             
             return
         }
         
-        // Ora riconfiguriamo il formattatore per l'output desiderato
         formatter.minimumFractionDigits = 2
         formatter.maximumFractionDigits = 2
         
-        // Riconvertiamo il numero in una stringa formattata
         if let stringaFormattata = formatter.string(from: numero) {
             self.amount = stringaFormattata
         }
         
-    } //  private func formattarValore() {
+    } //  private func formatAmountValue() {
     
     private func payment() {
         
-        // Compone la url a cui Nexipos deve restituire l'esito della chiamata
+        // Constructs the URL to which Nexipos must return the call result
         componentsPayment.scheme = "softposbasedemo01"
         componentsPayment.host = "payment"
 
         let urlResponse = componentsPayment.url
         
-        // Compone la url di chiamata verso Nexi Pos
+        // Constructs the call url to Nexi Pos
         componentsPayment.scheme = "neximpos"
         componentsPayment.host = "payment"
         
-        // Aggiunge i parametri per avviare il pagamento
+        // Adds the parameters to start the payment
         let decimalSeparator = Locale.current.decimalSeparator ?? "."
         let amountModificata = amount.replacingOccurrences(of: decimalSeparator, with: "")
         
@@ -282,12 +270,12 @@ struct PaymentView: View {
         
         let url = componentsPayment.url
                 
-        // Eseguiamo il deeplink
+        // Start the command
         openURL(url!) { accepted in
             
             if !accepted {
                
-                // Non è stato possibile aprire Nexi Pos. È installata?
+                // Could not open Nexi Pos. Is it installed?
             }
             
         } // openURL

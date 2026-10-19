@@ -1,7 +1,10 @@
-//
-//  AlertInfo.swift
-//
-
+/**
+ *
+ * Nexi Payments
+ *
+ * Alert
+ *
+ */
 import Foundation
 
 struct AlertInfo: Identifiable {

@@ -1,6 +1,10 @@
-//
-//  NetworkError.swift
-//
+/**
+ *
+ * Nexi Payments
+ *
+ * Defines a network error
+ *
+ */
 
 import Foundation
 

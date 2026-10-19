@@ -1,14 +1,17 @@
-//
-//  SdkDelegate.swift
-//
 import App2AppSDK
 
+/**
+ *
+ * Nexi Payments
+ *
+ *
+ */
 protocol SdkDelegate {
     
-    // Il metodo viene implementato nella Classe AppState
-    // che essendo un Observable informa gli oggetti in
-    // ascolto che è arrivato un messaggio dall'SDK in
-    // seguito ad una operazione avviata
+    // The method is implemented in the AppState class,
+    // which, being an Observable, notifies listening
+    // objects that a message has been received from the SDK
+    // following an initiated operation.
     func resultFromSDK(message : String)
   
     

@@ -1,14 +1,14 @@
-//
-//  ReceiptView.swift
-//  sdk-ios-swiftui01
-//
-//  Created by MAC-01 on 05/11/25.
-//
-
 import SwiftUI
 import CocoaLumberjackSwift
 import App2AppSDK
 
+/**
+ *
+ * Nexi Payments
+ *
+ * allows for the retrieval of a transaction receipt
+ *
+ */
 struct ReceiptView: View {
     
     @State private var selectedReceiptType: ReceiptType = .payment
@@ -21,13 +21,12 @@ struct ReceiptView: View {
     
     var appManager = AppManager.shared
     
-    // Proprietà calcolata per la validazione
+    // Computed property for validation
     private var isFormValid: Bool {
        
-        // La form è valida se il campo non è vuoto.
-        let transactionIdValida = !transactionId.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty
+        let transactionIdValid = !transactionId.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty
        
-        return transactionIdValida
+        return transactionIdValid
         
     }
     
@@ -37,14 +36,14 @@ struct ReceiptView: View {
             
             VStack(spacing: 20) {
                 
-                Text("Receipt inserimento dati - SDK")
+                Text("Receipt value entry - SDK")
                     .font(.title3)
                 
                 Form {
                     
                     TextField("transactionId", text: $transactionId)
                     
-                    Picker("Tipo Ricevuta", selection: $selectedReceiptType) {
+                    Picker("Receipt Type", selection: $selectedReceiptType) {
                                             
                         ForEach(ReceiptType.allCases) { type in
                             
@@ -58,13 +57,13 @@ struct ReceiptView: View {
                 }.applyDemoBackground() // Form
                 /*
                 .toolbar {
-                    // Aggiunge un pulsante per chiudere la tastiera
+                 // Adds a button to close the keyboard
                     ToolbarItemGroup(placement: .keyboard) {
                         
                         Spacer()
                         
                         Button("Fatto") {
-                            // Nasconde la tastiera
+                            // Hides the keyboard
                             UIApplication
                                 .shared.sendAction(#selector(UIResponder
                                     .resignFirstResponder
@@ -83,7 +82,7 @@ struct ReceiptView: View {
                 Button("Receipt") {
                     // Avvia refund
                     
-                    DDLogInfo("ReceiptView -> avviato getPayReceipt transactionId : \(transactionId) ")
+                    DDLogInfo("ReceiptView -> started getPayReceipt transactionId : \(transactionId) ")
                     
                     Task {
                         
@@ -91,13 +90,13 @@ struct ReceiptView: View {
                             
                             case .payment:
                                 
-                                appManager.getReceipe(transactionId: transactionId,
+                                appManager.getReceipt(transactionId: transactionId,
                                                 receiptType : ReceiptType.payment
                                                )
                             
                             case .refund:
                             
-                                appManager.getReceipe(transactionId: transactionId,
+                                appManager.getReceipt(transactionId: transactionId,
                                                       receiptType: ReceiptType.refund
                                                      )
                             
@@ -116,11 +115,11 @@ struct ReceiptView: View {
             .onTapGesture {
                 hideKeyboard()
             }
-            // Applica il modificatore per ignorare l'area sicura della tastiera
+            // Apply the modifier to ignore the keyboard safe area
             .ignoresSafeArea(.keyboard)
             .onAppear() {
                 
-                transactionId = appState.transactionIdUltimoPagamento
+                transactionId = appState.lastPaymentTransactionId
                 
             }
             
@@ -128,7 +127,7 @@ struct ReceiptView: View {
                        
                 Color.black.opacity(0.5).ignoresSafeArea()
                 
-                ProgressView("Receipt in corso...")
+                ProgressView("Receipt in progress...")
                     .padding(20)
                     .background(Color.white)
                     .cornerRadius(10)

@@ -1,24 +1,23 @@
-//
-//  ContentView.swift
-//  SwiftUI_25-08-30_02_ AppIntercom
-//
-//  Created by MAC-01 on 30/08/25.
-//
-
 import SwiftUI
 
+/**
+ *
+ * Nexi Payments
+ *
+ * It acts as a router to display the other views.
+ *
+ */
 private var amount      : String = ""
 private var terminalId  : String = ""
 private var result      : String = ""
 
-// Il ContentView principale che funge da router
 struct ContentView: View {
     
-    // Recupero lo stato dall'ambiente
+    // Retrieve the state from the environment
     @EnvironmentObject var appState: AppState
     @State var isLinkReversalValid = false
 
-    // Recupera la versione dell'app
+    // Retrieve the App version
     var appVersion: String {
             return Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String ?? "N/A"
     }
@@ -29,7 +28,7 @@ struct ContentView: View {
                    
             VStack(spacing: 20){
                 
-                Text("Softpos BASE demo")
+                Text("Softpos User Authentication demo")
                     .font(.title)
                     
                 AppVersionView()
@@ -42,12 +41,12 @@ struct ContentView: View {
                        Text("Payment")
                             .font(.title2)
                         
-                       Spacer() // Spinge il testo a sinistra
+                       Spacer() // Pushes the text to the left
                         
                     }
-                   .padding() // Aggiunge spazio interno
-                   .frame(maxWidth: .infinity) // Si espande per tutta la larghezza
-                   .cornerRadius(10) // Angoli arrotondati
+                   .padding()
+                   .frame(maxWidth: .infinity) // It expands across the entire width.
+                   .cornerRadius(10)
                     
                 } // NavigationLink
                 .buttonStyle(DemoButtonStyle())
@@ -58,19 +57,23 @@ struct ContentView: View {
                        Text("Reversal")
                             .font(.title2)
                        
-                        Spacer() // Spinge il testo a sinistra
+                        Spacer() // Pushes the text to the left
                     }
-                   .padding() // Aggiunge spazio interno
-                   .frame(maxWidth: .infinity) // Si espande per tutta la larghezza
+                   .padding()
+                   .frame(maxWidth: .infinity) // It expands across the entire width.
                 
                     
                 } // NavigationLink
                 .buttonStyle(DemoButtonStyle())
+                // The Reversal button is enabled only if data
+                // regarding the amount and terminalId is present in UserDefaults.
                 .disabled(!isLinkReversalValid)
                 
-                // NavigationLink invisibile per Resultview, attivato programmaticamente
+                // NavigationLink invisibile.
+                // The ResultView is displayed only
+                // when the Nexi POS has returned the result of an operation.
                 NavigationLink(destination: ResultView(appState: appState),
-                               isActive: $appState.mostraResultView) {
+                               isActive: $appState.showResultView) {
                     
                     EmptyView()
                     
@@ -84,17 +87,27 @@ struct ContentView: View {
            
             .onAppear() {
                 
-                // Recupera i valori di amount e terminalId dalle UsersDefault
+                // Retrieves the amount and terminalId values
+                // from the UsersDefaults
                 amount = UserDefaults.standard.string(forKey: "amount") ?? ""
                 terminalId = UserDefaults.standard.string(forKey: "terminalId") ?? ""
                 
+                // Checks for the presence in UserDefaults,
+                // of the items required by the Reversal.
+                // Updates the View's state
                 checkLinkReversal()
                 
             }
          
         } // NavigationView
         
-          // Il gestore di deeplink è sulla vista radice, così è sempre attivo
+        // The deeplink handler is on the root view, so
+        // it will always be active.
+        //
+        // The handling of the transaction result from the Nexi POS
+        // is managed within this method.
+        // The Nexi POS sends the transaction result via a deep link
+        // to the response Ur specified in the method call.
         .onOpenURL { incomingURL in
         
             if let host = incomingURL.host {
@@ -115,6 +128,12 @@ struct ContentView: View {
                         
                         if (result == "0") {
                         
+                            // To perform a transaction reversal, the Reversal method must
+                            // send specific parameters regarding the last executed payment
+                            // transaction to the Nexi POS.
+                            // Therefore, the necessary parameter values are saved in the
+                            // app's UserDefaults.
+                            
                             if let terminalId = URLComponents(string: incomingURL.absoluteString)?.queryItems?.first(where: { $0.name == "terminalId" })?.value {
                                     
                                 UserDefaults.standard.set(terminalId, forKey: "terminalId")
@@ -144,14 +163,20 @@ struct ContentView: View {
                 
             } // if let host = incomingURL.host {
             
-            appState.risultatoOperazione = incomingURL.absoluteString
-            appState.mostraResultView = true
+            // Set the operation result in the app state.
+            appState.resultTransaction = incomingURL.absoluteString
+            
+            // When the operation result is set,
+            // the ResultView is displayed.
+            appState.showResultView = true
                 
         } // .onOpenURL
         
     } // body
     
-    // Funzione per verificare i dati in UserDefaults e aggiornare lo stato
+    // Checks for the presence in UserDefaults,
+    // of the items required by the Reversal.
+    // Updates the View's state
     private func checkLinkReversal() {
            
         if !amount.isEmpty && !terminalId.isEmpty {

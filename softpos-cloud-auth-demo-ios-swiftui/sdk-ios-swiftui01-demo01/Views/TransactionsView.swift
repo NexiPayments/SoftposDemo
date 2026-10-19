@@ -1,14 +1,14 @@
-//
-//  Transactions.swift
-//  sdk-ios-swiftui01
-//
-//  Created by MAC-01 on 05/11/25.
-//
-
 import SwiftUI
 import App2AppSDK
 import CocoaLumberjackSwift
 
+/**
+ *
+ * Nexi Payments
+ *
+ * Start execution of the getListTransaction method
+ *
+ */
 struct TransactionsView: View {
     
     @ObservedObject var appState : AppState
@@ -31,7 +31,7 @@ struct TransactionsView: View {
                 Button("Transactions") {
                     // Avvia metodo
                     
-                    DDLogInfo("TransactionView -> avviato getListTransactions")
+                    DDLogInfo("TransactionView -> start getListTransactions")
                     Task {
                         
                         appManager.getListTransactions()
@@ -49,7 +49,7 @@ struct TransactionsView: View {
                        
                 Color.black.opacity(0.5).ignoresSafeArea()
                 
-                ProgressView("List transactions in corso...")
+                ProgressView("getListTransactions in progress...")
                     .padding(20)
                     .background(Color.white)
                     .cornerRadius(10)

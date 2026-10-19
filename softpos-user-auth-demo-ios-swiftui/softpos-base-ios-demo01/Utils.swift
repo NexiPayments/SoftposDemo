@@ -1,13 +1,12 @@
-//
-//  Utils.swift
-//  SoftposBASETest01
-//
-//  Created by MAC-01 on 07/11/25.
-//
-
 import Foundation
 import SwiftUI
 
+/**
+ *
+ * Nexi Payments
+ *
+ *
+ */
 class Utils {
     
     public static func colorDomain(domain: String) -> Color {

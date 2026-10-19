@@ -1,69 +1,78 @@
-//
-//  LogManager.swift
-//
-
 import Foundation
 import CocoaLumberjackSwift
 
-// Una classe helper (Singleton) per accedere facilmente alle informazioni
-// del logger di file da qualsiasi punto dell'applicazione.
+/**
+ *
+ * Nexi Payments
+ *
+ *  A helper class (Singleton) to easily access file logger information
+ *  from anywhere in the application.
+ *
+ */
 class LogManager {
 
-    // Istanza condivisa accessibile globalmente tramite `LogManager.shared`
+    // Shared instance globally accessible via `LogManager.shared`
     static let shared = LogManager()
     
-    // Una proprietà privata per conservare un riferimento al file logger.
+    // Private property to store a reference to the logger file.
     private var fileLogger: DDFileLogger?
 
-    // Deve essere chiamato all'avvio dell'app
-    // per passare un riferimento al file logger attivo.
+    // Must be called at app startup
+    // to pass a reference to the active file logger.
     func setFileLogger(_ logger: DDFileLogger) {
         
         self.fileLogger = logger
-        DDLogInfo("LogManager.setFileLogger() -> configurato con il file logger.")
+        DDLogInfo("LogManager.setFileLogger() -> configured with the file logger.")
         
     }
 
-    // Restituisce l'URL del file di log più recente, pronto per essere condiviso.
+    /**
+     *
+     * Returns the URL of the most recent log file, ready to be shared.
+     *
+     */
     func getLogFileURL() -> URL? {
         
-        // Verifica che il fileLogger sia stato impostato
+        // Verify that the fileLogger has been set
         guard let fileLogger = fileLogger else {
             
-            DDLogError("LogManager.getLogFileURL() -> Tentativo di accedere al file di log, ma il fileLogger non è stato impostato in LogManager.")
+            DDLogError("LogManager.getLogFileURL() -> Attempted to access the log file, but the fileLogger has not been set in the LogManager.")
             return nil
             
         }
         
-        // Restituisce la lista dei percorsi dei file di log, ordinati dal più recente al più vecchio.
+        // Returns the list of log file paths, sorted from newest to oldest.
         let logFilePaths = fileLogger.logFileManager.sortedLogFilePaths
         
-        // Recupero il primo elemento della lista, che è il file più recente.
+        // Retrieves the first element of the list, i.e., the most recent file.
         if let lastLogFilePath = logFilePaths.first {
-            // Crea e restituisce un oggetto URL dal percorso del file.
+            
+            // Creates and returns a URL object from the file path.
             return URL(fileURLWithPath: lastLogFilePath)
+            
         }
         
-        DDLogWarn("LogManager.getLogFileURL() -> Nessun file di log trovato da condividere.")
+        DDLogWarn("LogManager.getLogFileURL() -> No log file found to share.")
         return nil
         
     } // func getLogFileURL()
     
     
-    // Restituisce un array di URL di tutti i file di log archiviati,
-    // ordinati dal più recente al più vecchio.
+    // Returns an array of URLs for all archived log files,
+    // sorted from newest to oldest.
     func getLogFileURLs() -> [URL] {
         
         guard let fileLogger = fileLogger else {
             
-            DDLogError("LogManager.getLogFileURLs() -> Tentativo di accedere ai file di log, ma il fileLogger non è stato impostato in LogManager.")
+            DDLogError("LogManager.getLogFileURLs() -> Attempted to access the log file, but the fileLogger has not been set in the LogManager.")
+            
             return []
             
         }
         
         let logFilePaths = fileLogger.logFileManager.sortedLogFilePaths
         
-        // Converte l'array di percorsi (String) in un array di URL
+        // Converts the array of paths (String) into an array of URLs
         let logFileURLs = logFilePaths.map { path in
             return URL(fileURLWithPath: path)
         }

@@ -5,6 +5,12 @@
 import Foundation
 import Network
 
+/**
+ *
+ * Nexi Payments
+ *
+ *
+ */
 class NetworkMonitor {
     
     static let shared = NetworkMonitor()
@@ -27,7 +33,7 @@ class NetworkMonitor {
             
             self?.status = path.status
             
-            // Notifica il resto dell'app del cambiamento di stato
+            // Notify the rest of the app about the state change
             NotificationCenter.default.post(name: .connectivityStatusChanged, object: nil)
             
         }

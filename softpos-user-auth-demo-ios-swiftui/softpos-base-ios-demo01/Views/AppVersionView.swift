@@ -1,17 +1,17 @@
-//
-//  AppVersionView.swift
-//  SwiftUI_25-08-30_02_ AppIntercom
-//
-//  Created by MAC-01 on 31/08/25.
-//
-
 import SwiftUI
 
+/**
+ *
+ * Nexi Payments
+ *
+ * View which is used to show the app version
+ *
+ */
 struct AppVersionView: View {
     let version: String
     let buildNumber: String
         
-    // Inizializzatore che recupera automaticamente i dati dal Bundle
+    // Retrieves the version data from the Bundle
     init() {
         
         self.version = Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String ?? "N/A"
@@ -21,7 +21,7 @@ struct AppVersionView: View {
     
     var body: some View {
         
-        Text("Versione \(version) (\(buildNumber))")
+        Text("Version \(version) (\(buildNumber))")
             .font(.title)
             .foregroundColor(.secondary)
             

@@ -1,15 +1,15 @@
-//
-//  ContentView.swift
-//  sdk-ios-swiftui01
-//
-//  Created by MAC-01 on 23/10/25.
-//
-
 import SwiftUI
 import App2AppSDK
 
-// View principale, mostra l'elenco delle funzionalità
-// attivabili
+
+/**
+ *
+ * Nexi Payments
+ *
+ * Main view, displays the list of features
+ * that can be enabled
+ *
+ */
 struct MainView: View {
     
     var appManager = AppManager.shared
@@ -19,7 +19,6 @@ struct MainView: View {
         
     @EnvironmentObject var appState: AppState
     
-    // Colonne per la LazyGrid
     let columns: [GridItem] = [
         
         GridItem(.flexible(), spacing: 16),
@@ -33,7 +32,7 @@ struct MainView: View {
             
             VStack(spacing: 10){
                     
-                Text("Test SDK iOS - demo")
+                Text("Cloud Authentication iOS - demo")
                     .font(.title)
                     .padding(.top, 10)
                     
@@ -49,7 +48,7 @@ struct MainView: View {
                             Text("Payment")
                                 .font(.title3)
                             
-                            Spacer() // Spinge il testo a sinistra
+                            Spacer() // Pushes the text to the left
                             
                         }
                         
@@ -61,7 +60,7 @@ struct MainView: View {
                             Text("Refund")
                                 .font(.title3)
                             
-                            Spacer() // Spinge il testo a sinistra
+                            Spacer()
                             
                         }
                         
@@ -73,7 +72,7 @@ struct MainView: View {
                             Text("Receipt")
                                 .font(.title3)
                             
-                            Spacer() // Spinge il testo a sinistra
+                            Spacer()
                             
                         }
                         
@@ -85,7 +84,7 @@ struct MainView: View {
                             Text("Transactions")
                                 .font(.title3)
                             
-                            Spacer() // Spinge il testo a sinistra
+                            Spacer()
                             
                         }
                         
@@ -98,17 +97,17 @@ struct MainView: View {
                             Text("Log")
                                 .font(.title3)
                             
-                            Spacer() // Spinge il testo a sinistra
+                            Spacer()
                             
                         }
     
                         
                     }.buttonStyle(DemoButtonStyle()) // NavigationLink
                     
-                    // Esegue il logout dall'sdk
+                    // Logs out from the SDK
                     Button(action: {
                         
-                        // Comando per mandare l'app in background
+                        // Command to send the app to the background
                         
                         Task {
                             
@@ -116,7 +115,7 @@ struct MainView: View {
                             
                         }
                         
-                        self.messageAlert = "Logout. L'app verrà chiusa."
+                        self.messageAlert = "Logout. The app will be closed."
                         self.showingAlert = true
                         
                         
@@ -125,7 +124,7 @@ struct MainView: View {
                             Image(systemName: "house.fill")
                             Text("Logout")
                             
-                            Spacer() // Spinge il testo a sinistra
+                            Spacer()
                         }
                             
                     }.buttonStyle(DemoButtonStyle()) // Button - logout sdk
@@ -133,10 +132,10 @@ struct MainView: View {
                     
                 } // Lazygrid
                 
-                // NavigationLink nascosto che viene attivato solo se
-                // l'SDK ha un risultato di una operazione da mostrare
-                NavigationLink(destination: EsitoView(),
-                               isActive: $appState.mostraResultView) { EmptyView() }
+                // Hidden NavigationLink that is triggered only if
+                // the SDK has an operation result to display
+                NavigationLink(destination: ResultView(),
+                               isActive: $appState.showResult) { EmptyView() }
             
                     
                 Spacer()
@@ -147,14 +146,14 @@ struct MainView: View {
         } // NavigationView
         .onAppear {
             
-            // L'operazione viene eseguita solo quando la view viene creata in
-            // fase di avvio dell'app
+            // The init operation is performed when the view is created during
+            // the app startup phase
            
             Task{
                 
                 appManager.initSDK(appId: Constant.CLIENT_ID,
                                    redirectUri: Constant.REDIRECT_URI,
-                                   merchantId: Constant.ID_PUNTO_VENDITA,
+                                   merchantId: Constant.POINT_OF_SALE_ID,
                                    merchantUsername: Constant.MERCHANT_USER_NAME,
                                    deeplinkScheme: Constant.DEEP_LINK_SCHEMA,
                                    domain: App2AppDomain.staging
@@ -162,11 +161,11 @@ struct MainView: View {
             } // Task
             
         } // fine onAppear
-        .alert("Attenzione", isPresented: $showingAlert) {
+        .alert("Attention", isPresented: $showingAlert) {
                         
             Button("Ok", role: .destructive) {
                
-                // Manda l'app in background
+                // Send the app to the background
                 UIApplication.shared.minimizeApp()
             }
             

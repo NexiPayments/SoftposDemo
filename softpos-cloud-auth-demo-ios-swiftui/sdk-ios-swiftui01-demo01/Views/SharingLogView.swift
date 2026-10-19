@@ -1,12 +1,14 @@
-//
-//  SharingLogView.swift
-//  SoftposBASETest01
-//
-//  Created by MAC-01 on 07/09/25.
-//
 
 import SwiftUI
 
+/**
+ *
+ * Nexi Payments
+ *
+ * allows the user to share the log file via email,
+ * messaging, etc.
+ *
+ */
 struct SharingLogView: View {
     
     let fileURL: URL
@@ -14,20 +16,20 @@ struct SharingLogView: View {
     var body: some View {
         
         VStack(spacing: 20) {
-            Text("Condividi File")
+            Text("Share File")
                 .font(.headline)
             
             Text(fileURL.lastPathComponent)
                 .font(.subheadline)
                 .foregroundColor(.secondary)
             
-            // ShareLink è usato per condividere contenuti.
+            // ShareLink is used to share content.
             ShareLink(
                 item: fileURL,
-                subject: Text("Log App test SDK SwitUI"),
-                message: Text("In allegato il file di log: \(fileURL.lastPathComponent)")
+                subject: Text("Log App test iOS SDK SwitUI"),
+                message: Text("The log file is attached: \(fileURL.lastPathComponent)")
             ) {
-                Label("Condividi", systemImage: "square.and.arrow.up")
+                Label("Share", systemImage: "square.and.arrow.up")
             }
             .buttonStyle(.borderedProminent)
             
@@ -35,7 +37,7 @@ struct SharingLogView: View {
             
         } // VStack
         .padding()
-        // Aggiunge la capacità di chiudere lo sheet trascinando verso il basso
+        // Adds the ability to close the sheet by dragging it downwards
         .presentationDetents([.medium, .large])
         
     } // body

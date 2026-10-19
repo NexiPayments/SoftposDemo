@@ -1,12 +1,11 @@
-//
-//  Theme..swift
-//  softpos-base-ios-demo01
-//
-//  Created by MAC-01 on 19/08/2026.
-//
-
 import SwiftUI
 
+/**
+ *
+ * Nexi Payments
+ *
+ *
+ */
 struct DemoButtonStyle: ButtonStyle {
     
     @Environment(\.isEnabled) private var isEnabled
@@ -25,9 +24,8 @@ struct DemoButtonStyle: ButtonStyle {
 extension View {
     func applyDemoBackground() -> some View {
         self.frame(maxWidth: .infinity, maxHeight: .infinity)
-            // Se la View è un Form o una List, questo toglie lo sfondo default
+            // If the View is a Form or a List, this removes the default background
             .scrollContentBackground(.hidden)
-            // Questo applica il colore degli Assets che abbiamo creato
             .background(Color("DemoBackgroundColor").ignoresSafeArea())
     }
 }

@@ -1,41 +1,50 @@
-//
-//  Constant.swift
-//
+/**
+ *
+ * Nexi Payments
+ *
+ * This file must contain the parameters
+ * to test the Nexi SDK's functionality.
+ *
+ */
 
 import UIKit
 
 class Constant {
 
-    public static let APP_MANAGER                                   = "AppManager"
+    public static let APP_MANAGER                                                   = "AppManager"
     
-    public static let USER_DEFAULTS_AMOUNT_ULTIMO_PAGAMENTO         = "AMOUNT_ULTIMO_PAGAMENTO"
-    public static let USER_DEFAULTS_TERMINAL_ID_ULTIMO_PAGAMENTO    = "TERMINAL_ID_ULTIMO_PAGAMENTO"
-    public static let USER_DEFAULTS_TRANSACTION_ID_ULTIMO_PAGAMENTO = "TRANSACTION_ID_ULTIMO_PAGAMENTO"
+    // To perform a transaction reversal, the Reversal method must
+    // send specific parameters regarding the last executed payment
+    // transaction to the Nexi POS.
+    // Therefore, the necessary parameter values are saved in the
+    // app's UserDefaults
+    public static let USER_DEFAULTS_LAST_PAYMENT_AMOUNT                             = "USER_DEFAULTS_LAST_PAYMENT_AMOUNT"
+    public static let USER_DEFAULTS_LAST_PAYMENT_TERMINAL_ID                        = "USER_DEFAULTS_LAST_PAYMENT_TERMINAL_ID"
+    public static let USER_DEFAULTS_LAST_PAYMENT_TRANSACTION_ID                     = "USER_DEFAULTS_LAST_PAYMENT_TRANSACTION_ID"
     
-    // Inizio - Dati da utilizzare nella fase di init dell'SDK
+    // ## Start - Data to be used during the SDK initialization phase
 
-    // Da recuperare dal portale sviluppatore Nexi
-    // identificativo dell'applicazione registrata
-    // nel portale sviluppatori Nexi
-    public static let CLIENT_ID                                     = ""
+    // To be retrieved from the Nexi developer portal.
+    // Identifier of the application registered on the Nexi developer portal
+    public static let CLIENT_ID                                                     = ""
 
-    // Identificativo punto vendita associato all'app
-    // registrata nel portale sviluppatori Nexi
-    public static let ID_PUNTO_VENDITA                              = ""
+    // Point-of-sale identifier associated with the app registered
+    // on the Nexi developer portal
+    public static let POINT_OF_SALE_ID                                              = ""
 
-    // Indirizzo web indicato nell'app
-    // registrata nel portale sviluppatori Nexi
-    // Può anche non esistere ma devo essere formalmente corretto
-    // es. https://miosito/miapagina
-    public static let REDIRECT_URI                                  = ""
+    // Web address specified in the app registered on the Nexi developer portal.
+    // It does not necessarily have to exist, but the format must be correct
+    // (e.g., https://mysite/mypage)
+    public static let REDIRECT_URI                                                  = ""
 
-        // Il merchant_user_name normalmente è un indirizzo email
-        // associato all'utente.
-    public static let MERCHANT_USER_NAME                            = ""
+    // The merchant_user_name is typically
+    // an email address associated with the user.
+    public static let MERCHANT_USER_NAME                                            = ""
 
-    // Fine - Dati da utilizzare nella fase di init dell'SDK
+    // ## End - Data to be used during the SDK initialization phase
 
-    public static let DEEP_LINK_SCHEMA = "demonexi_test"
+    // Example of the schema
+    public static let DEEP_LINK_SCHEMA                                              = "demonexi_test"
 
     
 }

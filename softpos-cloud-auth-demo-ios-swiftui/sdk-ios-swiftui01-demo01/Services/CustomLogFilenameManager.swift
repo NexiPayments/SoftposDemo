@@ -1,14 +1,17 @@
-//
-//  CustomLogFileManager.swift
-//
-
 import Foundation
 import CocoaLumberjackSwift
 
+/**
+ *
+ * Nexi Payments
+ *
+ * Customized management of the app's logging system
+ *
+ */
 class CustomLogFilenameManager: DDLogFileManagerDefault {
 
-    // Fornisce un nome di file personalizzato.
-    // Viene chiamato ogni volta che CocoaLumberjack ha bisogno di creare un nuovo file di log.
+    // Provides a custom file name.
+    // Called whenever CocoaLumberjack needs to create a new log file.
     override var newLogFileName: String {
         
         let dateFormatter = DateFormatter()

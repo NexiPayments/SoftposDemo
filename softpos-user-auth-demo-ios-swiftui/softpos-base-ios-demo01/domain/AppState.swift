@@ -1,18 +1,25 @@
-//
-//  AppState.swift
-//  SwiftUI_25-08-30_02_ AppIntercom
-//
-//  Created by MAC-01 on 30/08/25.
-//
 
 import Foundation
 
-// Un oggetto osservabile che l'intera app può usare per cambiare stato
+/**
+ *
+ * Nexi Payments
+ *
+ * An Observable class that the app uses
+ * for application state management.
+ *
+ */
 class AppState: ObservableObject {
     
-    @Published var risultatoOperazione:         String  = ""
-    @Published var mostraResultView                     = false
-    @Published var terminalIdUltimoPagamento:   String  = ""
-    @Published var amountUltimoPagamento:       String  = ""
+    // Contains the result of the last transaction performed.
+    @Published var resultTransaction        : String  = ""
+    
+    // If set to true, the ResultView is displayed.
+    @Published var showResultView                     = false
+    
+    // Data regarding the last successful payment transaction.
+    // These are required to execute the Reversal method.
+    @Published var LastPaymentTerminalId    : String  = ""
+    @Published var LastPaymentAmount        : String  = ""
     
 }

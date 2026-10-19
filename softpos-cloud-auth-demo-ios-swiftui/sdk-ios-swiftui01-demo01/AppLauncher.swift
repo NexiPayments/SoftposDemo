@@ -1,9 +1,13 @@
-//
-//  AppLauncher.swift
-
 import SwiftUI
 import CocoaLumberjackSwift
 
+/**
+ *
+ * Nexi Payment
+ *
+ * App Launcher
+ *
+ */
 @main
 struct AppLauncher: App {
     
@@ -15,25 +19,26 @@ struct AppLauncher: App {
    
     init() {
         
-        // Crea un'istanza del tuo file manager personalizzato
+        // Create an instance of the custom file manager
         let customLogFileManager = CustomLogFilenameManager()
         fileLogger = DDFileLogger(logFileManager: customLogFileManager)
         
         setupLogging()
         
-        // Il file logger viene passato al LogManager per la condivisione
+        // The file logger is passed to the LogManager for sharing
         LogManager.shared.setFileLogger(fileLogger)
         
-        DDLogInfo("AppLauncher -> crea istanza unica di AppState")
+        DDLogInfo("AppLauncher -> create a single instance of AppState")
         let state = AppState()
         
-        // con l'underscore si accede al property wrapper e gli si assegna l'appState appena creata.
+        // The underscore is used to access the property wrapper,
+        // and the newly created appState is assigned to it.
         _appState = StateObject(wrappedValue: state)
         
-        DDLogInfo("AppLauncher -> assegna appState ad appManager")
+        DDLogInfo("AppLauncher -> assign appState to appManager")
         appManager.appState = state
         
-        DDLogInfo("AppLauncher -> assegna appState ad all'sdkDelegate di appManager")
+        DDLogInfo("AppLauncher -> assign appState to the appManager's sdkDelegate")
         appManager.sdkDelegate = state
         
         
@@ -43,14 +48,14 @@ struct AppLauncher: App {
         
         WindowGroup {
             
-            // Viene iniettato nell'environment l'istanza che gestisce
-            // lo stato dell'app
+            // The instance that manages the app's state
+            // is injected into the environment.
             MainView()
                 .environmentObject(appState)
                 .onAppear {
                     
-                    // Esegue l'assegnazione solo quando la ContentView appare
-                    // e solo se non è già stata fatta.
+                    // Performs the assignment only when the ContentView appears
+                    // and only if it hasn't already been done.
                     if AppManager.shared.appState == nil {
                         AppManager.shared.appState = appState
                        
@@ -63,17 +68,16 @@ struct AppLauncher: App {
     
     private func setupLogging() {
            
-        // Aggiunge il logger della console di Xcode (per il debug)
+        // Adds the Xcode console logger (for debugging)
         DDLog.add(DDOSLogger.sharedInstance)
 
-        // Configura il logger per scrivere su file
-        fileLogger.rollingFrequency = 60 * 60 * 24 // 24 ore
-        fileLogger.logFileManager.maximumNumberOfLogFiles = 7 // Conserva i log degli ultimi 7 giorni
+        // Configure the logger to write to a file
+        fileLogger.rollingFrequency = 60 * 60 * 24 // 24 hours
+        fileLogger.logFileManager.maximumNumberOfLogFiles = 7 // Keep logs from the last 7 days
         
         DDLog.add(fileLogger)
 
-        // Messaggio di avvio per verificare che il logging funzioni
-        DDLogInfo("AppLauncher -> Avvio dell'applicazione e configurazione del logging completata.")
+        DDLogInfo("AppLauncher -> Application startup and logging configuration completed.")
         
         
    } // private func setupLogging() {

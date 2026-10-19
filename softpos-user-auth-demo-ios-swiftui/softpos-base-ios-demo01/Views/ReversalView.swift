@@ -1,14 +1,14 @@
-//
-//  ReversalView.swift
-//  SoftposBASETest01
-//
-//  Created by MAC-01 on 05/09/25.
-//
-
 import SwiftUI
 
 var componentsReversal = URLComponents()
 
+/**
+ *
+ * Nexi Payments
+ *
+ * Manages the execution of the Reversal method
+ *
+ */
 struct ReversalView: View {
     
     @Environment(\.openURL) var openURL
@@ -26,10 +26,10 @@ struct ReversalView: View {
     var sendTicket = true
     var urlTicket = false
     
-    // Proprietà calcolata per la validazione
+    // Computed property for form validation.
+    // callerTrxId fields must be populated
     private var isFormValid: Bool {
-       
-        // La form è valida se il campo non è vuoto.
+    
         let callerTrxIDValido = !callerTrxId.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty
        
         return callerTrxIDValido
@@ -65,14 +65,14 @@ struct ReversalView: View {
             } // Form
             .padding(.top, -10)
             .toolbar {
-                // Aggiunge un pulsante per chiudere la tastiera
+                // Adds a button to close the keyboard.
                 ToolbarItemGroup(placement: .keyboard) {
                     
                     Spacer()
                     
-                    Button("Fatto") {
+                    Button("Done") {
                         
-                        // Nasconde la tastiera
+                        // close the keyboard.
                         UIApplication
                             .shared.sendAction(#selector(UIResponder
                                                         .resignFirstResponder
@@ -88,7 +88,10 @@ struct ReversalView: View {
             } // toolbar
             
             Button("Reversal") {
-                reversal(terminaId: terminalId, amount: amount)
+                
+                // Start the command
+                startReversal(terminaId: terminalId, amount: amount)
+                
             }
             .padding()
             .buttonStyle(DemoButtonStyle())
@@ -98,6 +101,8 @@ struct ReversalView: View {
         .applyDemoBackground()
         .onAppear() {
             
+            // When opening the View, retrieve
+            // the data from UserDefaults
             amount = UserDefaults.standard.string(forKey: "amount") ?? ""
             terminalId = UserDefaults.standard.string(forKey: "terminalId") ?? ""
             
@@ -107,13 +112,18 @@ struct ReversalView: View {
                     isTextFieldFocused = false
         }
         .navigationTitle("Reversal")
-        // Applica il modificatore per ignorare l'area sicura della tastiera
+        // Apply the modifier to ignore the keyboard safe area.
         .ignoresSafeArea(.keyboard)
         
         
     } // body
 
-    func generaTimestamp() -> String{
+    /**
+     *
+     * Generates a timestamp based on the Reversal specifications
+     *
+     */
+    func getTimestamp() -> String{
     
         let now = Date()
         let formatter = DateFormatter()
@@ -124,21 +134,21 @@ struct ReversalView: View {
         
     }
     
-    private func reversal(terminaId : String, amount : String ) {
+    private func startReversal(terminaId : String, amount : String ) {
         
-        // Compone la url a cui Nexipos deve restituire l'esito della chiamata
+        // // Constructs the URL to which Nexipos must return the call result
         componentsReversal.scheme = "softposbasedemo01"
         componentsReversal.host = "reversal"
         
         let urlResponse = componentsReversal.url
         
-        // Compone la url di chiamata verso Nexi Pos
+        // Constructs the call url to Nexi Pos
         componentsReversal.scheme = "neximpos"
         componentsReversal.host = "reversal"
         
-        // Aggiunge i parametri per avviare il pagamento
+        // Adds the parameters to start the Reversal
         
-        let timeStamp = generaTimestamp()
+        let timeStamp = getTimestamp()
         
         let itemQueryAmount         = URLQueryItem(name: "amount", value: amount)
         
@@ -174,12 +184,12 @@ struct ReversalView: View {
         
         let url = componentsReversal.url
         
-        // Eseguiamo il deeplink
+        // Start the command
         openURL(url!) { accepted in
             
             if !accepted {
                 
-                //Non è stato possibile aprire Nexi Pos. È installata?
+                // Could not open Nexi Pos. Is it installed?
                 
             }
             

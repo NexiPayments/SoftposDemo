@@ -5,11 +5,10 @@
 import SwiftUI
 import App2AppSDK
 
-// Estendiamo il tipo URL per conformarlo al protocollo Identifiable.
+// Extends the URL type to conform to the Identifiable protocol.
 extension URL: Identifiable {
     
-    // Usiamo il percorso assoluto del file (absoluteString) come suo ID univoco.
-    // Poiché nessun file può avere lo stesso percorso, questo è un identificatore perfetto.
+    // Use the file's absolute path (absoluteString) as a unique ID.
     public var id: String {
         self.absoluteString
     }
@@ -18,7 +17,7 @@ extension URL: Identifiable {
 
 extension View {
 
-    // Estensione per nascondere la tastiera
+    // Hide the keyboard
     func hideKeyboard() {
         UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
     }
@@ -64,7 +63,6 @@ extension App2AppSoftposTransaction: Encodable {
             
         var container = encoder.container(keyedBy: CodingKeys.self)
 
-        // Le proprietà (es. .transactionId) devono essere accessibili (public o internal).
         try container.encode(transactionId, forKey: .transactionId)
         try container.encode(pan, forKey: .pan)
         try container.encodeIfPresent(transmissionDate?.intValue, forKey: .transmissionDate)

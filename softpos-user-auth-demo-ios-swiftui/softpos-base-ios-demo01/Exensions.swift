@@ -1,25 +1,24 @@
-//
-//  Exensions.swift
-//  SoftposBASETest01
-//
-//  Created by MAC-01 on 07/09/25.
-//
-
 import Foundation
 import SwiftUI
 
-// Estendiamo il tipo URL per conformarlo al protocollo Identifiable.
+/**
+ *
+ * Nexi Payments
+ *
+ * Manages Extensions
+ *
+ */
+// Extends the URL type to conform to the Identifiable protocol.
 extension URL: Identifiable {
     
-    // Usiamo il percorso assoluto del file (absoluteString) come suo ID univoco.
-    // Poiché nessun file può avere lo stesso percorso, questo è un identificatore perfetto.
+    // Uses the absolute file path (absoluteString) as its unique ID.
     public var id: String {
         self.absoluteString
     }
     
 } // extension URL: Identifiable {
 
-// Estensione per nascondere la tastiera
+// Extension to hide the keyboard
 extension View {
     
     func hideKeyboard() {

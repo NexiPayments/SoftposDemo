@@ -6,7 +6,12 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		D657BF58306AAA6000515A24 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = D657BF57306AAA6000515A24 /* README.md */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXFileReference section */
+		D657BF57306AAA6000515A24 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		D69EF2772E630A7100C33783 /* softpos-base-ios-demo01.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "softpos-base-ios-demo01.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D6AA60863035F22000F4CB0F /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = .gitignore; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -33,6 +38,7 @@
 		D69EF26E2E630A7100C33783 = {
 			isa = PBXGroup;
 			children = (
+				D657BF57306AAA6000515A24 /* README.md */,
 				D6AA60863035F22000F4CB0F /* .gitignore */,
 				D69EF2792E630A7100C33783 /* softpos-base-ios-demo01 */,
 				D69EF2782E630A7100C33783 /* Products */,
@@ -113,6 +119,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D657BF58306AAA6000515A24 /* README.md in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

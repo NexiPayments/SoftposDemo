@@ -1,8 +1,12 @@
-//
-//  ReceiptType.swift
-
 import Foundation
 
+/**
+ *
+ * Nexi Payments
+ *
+ * defines the type of receipt that can be issued or received
+ *
+ */
 enum ReceiptType: String, CaseIterable, Identifiable {
     
     case payment = "Payment"

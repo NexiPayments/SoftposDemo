@@ -1,7 +1,11 @@
-//
-//  Theme.swift
 import SwiftUI
 
+/**
+ *
+ * Nexi Payments
+ *
+ *
+ */
 struct DemoButtonStyle: ButtonStyle {
     
     @Environment(\.isEnabled) private var isEnabled
@@ -25,9 +29,8 @@ extension View {
     func applyDemoBackground() -> some View {
         
         self.frame(maxWidth: .infinity, maxHeight: .infinity)
-        // Se la View è un Form o una List, questo toglie lo sfondo default
+        // If the View is a Form or a List, remove the default background
         .scrollContentBackground(.hidden)
-        // Questo applica il colore degli Assets che abbiamo creato
         .background(Color("DemoBackgroundColor").ignoresSafeArea())
     }
 }

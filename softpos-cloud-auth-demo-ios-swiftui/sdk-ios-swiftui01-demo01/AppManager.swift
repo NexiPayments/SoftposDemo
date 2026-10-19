@@ -1,17 +1,16 @@
-//
-//  AppManager.swift
-//
-//
-// 
-//
-
 import Foundation
 import App2AppSDK
 import UIKit
 import CocoaLumberjackSwift
 import SwiftUI
 
-// Classe singleton che gestisce l'interfacciamento con l'SDK
+/**
+ *
+ * Nexi Payments
+ *
+ * Singleton class that handles interfacing with the SDK
+ *
+ */
 class AppManager {
     
     var sdkDelegate : SdkDelegate?
@@ -26,7 +25,7 @@ class AppManager {
        
     }
     
-    // Inizializza l'SDK
+    // InitSDK
     public func initSDK(appId : String,
                         redirectUri : String,
                         merchantId : String,
@@ -70,9 +69,9 @@ class AppManager {
     } // public func initSDK
     
    
-    // Quando si avvia un metodo dell'SDK, questi richiede sempre il metodo onGetRequestUri.
-    // all'interno di questo metodo lo sviluppatore deve implementare il metodo del suo
-    // backoffice che consente il recupero effettivo della request_uri
+    // Whenever an SDK method is invoked, it always calls the onGetRequestUri method.
+    // Within this method, the developer must implement a call to their own
+    // backend that enables the actual retrieval of the request_uri.
     public func onGetRequestUri(deviceld: String) -> String {
         
         var requestUri = ""
@@ -83,17 +82,18 @@ class AppManager {
             
             do {
                 
-                // Metodo implementato dallo sviluppatore per recuperare la request_uri
+                // Method implemented by the developer to retrieve the request_uri
                 requestUri = try await BackendService.getRequestUri(deviceId: deviceld)
                 
             } catch {
                 
-                DDLogError("\(Constant.APP_MANAGER) -> onGetRequestUri -> errore \(NetworkError.decodingError)")
+                DDLogError("\(Constant.APP_MANAGER) -> onGetRequestUri -> error \(NetworkError.decodingError)")
                 
                 requestUri = ""
             }
             
            semaphore.signal() // Signal that the async task has completed
+            
         }
         
         semaphore.wait() // Wait for the async task to finish return requestUri
@@ -141,7 +141,7 @@ class AppManager {
         
     } // func refund
    
-    func getReceipe(transactionId : String,
+    func getReceipt(transactionId : String,
                     receiptType : ReceiptType
                    ) {
         
@@ -205,13 +205,13 @@ class AppManager {
                     
                     } else {
                         
-                       DDLogInfo("AppManager -> operation listener onSucces() :  Impossibile convertire i dati JSON in una stringa. \n")
+                       DDLogInfo("AppManager -> operation listener onSucces() :  Unable to convert JSON data to a string. \n")
                         
                     }
                     
                 } catch {
                    
-                    DDLogError("AppManager -> operation listener onSucces() :  Errore durante la codifica JSON: \(error.localizedDescription) \n")
+                    DDLogError("AppManager -> operation listener onSucces() :  Error during JSON encoding: \(error.localizedDescription) \n")
                     
                 }
                
@@ -238,12 +238,12 @@ class AppManager {
                     
                     } else {
                                                
-                        errore = "Impossibile convertire i dati JSON in una stringa."
+                        errore = "Unable to convert JSON data to a string."
                     }
                     
                 } catch {
                                 
-                    errore = "Errore durante la codifica JSON: \(error.localizedDescription)"
+                    errore = "Error during JSON encoding: \(error.localizedDescription)"
                     
                 }
                 
@@ -268,7 +268,7 @@ class AppManager {
     
 } // class
 
-
+// Extension that handles SDK response events
 extension AppManager: App2AppManagerSoftPosEventsDelegate {
     
     func app2AppManagerSoftPosEventsOnReaderInitProgress(_ progress: Int) {
@@ -307,23 +307,24 @@ extension AppManager: App2AppManagerSoftPosEventsDelegate {
         
     } // func app2AppManagerSoftPosEventsOnDidCardReaderEvent(_ event: App2AppSDK.App2AppSoftposReaderEvent) {
     
-    
-    // Pay eseguito
+    // payment completed
     func app2AppManagerSoftPosEventsOnDidPaymentSuccess(_ result: App2AppSDK.App2AppSoftposTransactionResult) {
        
         let customMessage = result.customMessage
         let importValue = Int(String(customMessage["amount"] ?? "0"))
         
         DispatchQueue.main.async {
-            // Questo blocco di codice verrà eseguito sul thread principale.
             
             if let appState = self.appState {
                 
-                appState.setDatiUltimoPagamentoInUserDefaults(amount: importValue ?? 0,
-                                                              transactionId: result.transactionId
-                                                             )
+                // To process a refund for a transaction, it is necessary to store
+                // the amount and the transaction ID of the payment transaction.
                 
-                DDLogInfo("\(Constant.APP_MANAGER) -> app2AppManagerSoftPosEventsOnDidPaymentSuccess -> salvati sul UserDefaults i dati della : transazione con ID : \(result.transactionId) e importo : \(importValue ?? 0)")
+                appState.setDataLastPaymentInUserDefaults(amount: importValue ?? 0,
+                                                          transactionId: result.transactionId
+                                                          )
+                
+                DDLogInfo("\(Constant.APP_MANAGER) -> app2AppManagerSoftPosEventsOnDidPaymentSuccess -> saved the transaction data (with ID): \(result.transactionId) and amount : \(importValue ?? 0) to UserDefaults")
             }
             
         }
@@ -346,7 +347,7 @@ extension AppManager: App2AppManagerSoftPosEventsDelegate {
             
         } catch {
                         
-            message = "Errore nella conversione in JSON"
+            message = "Error during JSON conversion"
         }
         
         do {
@@ -361,7 +362,7 @@ extension AppManager: App2AppManagerSoftPosEventsDelegate {
             
         } catch {
                         
-            resultMessage = "Errore nella conversione in JSON"
+            resultMessage = "Error during JSON conversion"
             
         }
         
@@ -373,7 +374,7 @@ extension AppManager: App2AppManagerSoftPosEventsDelegate {
         
     } // func app2AppManagerSoftPosEventsOnDidPaymentSuccess(_ result: App2AppSDK.App2AppSoftposTransactionResult)
     
-    // Refund eseguito
+    // Refund completed
     func app2AppManagerSoftPosEventsOnDidRefundSuccess(_ result: App2AppSDK.App2AppSoftposTransactionResult) {
         
         var message = ""
@@ -398,7 +399,7 @@ extension AppManager: App2AppManagerSoftPosEventsDelegate {
             
         } catch {
                         
-            message = "Errore nella conversione in JSON"
+            message = "Error during JSON conversion"
             
         }
         
@@ -414,14 +415,14 @@ extension AppManager: App2AppManagerSoftPosEventsDelegate {
             
         } catch {
                         
-            resultMessage = "Errore nella conversione in JSON"
+            resultMessage = "Error during JSON conversion"
             
         }
         
         DDLogInfo("\(Constant.APP_MANAGER) -> app2AppManagerSoftPosEventsOnDidRefundSuccess result : \(resultMessage)")
         DDLogInfo("\(Constant.APP_MANAGER) -> app2AppManagerSoftPosEventsOnDidRefundSuccess message : \(message)")
         
-        DDLogInfo("\(Constant.APP_MANAGER) -> app2AppManagerSoftPosEventsOnDidRefundSuccess : avviata sdkDelegate?.resultRefund(resultTransaction: \(resultMessage))")
+        DDLogInfo("\(Constant.APP_MANAGER) -> app2AppManagerSoftPosEventsOnDidRefundSuccess : start sdkDelegate?.resultRefund(resultTransaction: \(resultMessage))")
         
         sdkDelegate?.resultFromSDK(message: message)
         
@@ -443,7 +444,7 @@ extension AppManager: App2AppManagerSoftPosEventsDelegate {
         DDLogInfo("\(Constant.APP_MANAGER) -> app2AppManagerSoftPosEventsOnDidPaymentGetReceiptSuccess receipt : \(receipt)")
         DDLogInfo("\(Constant.APP_MANAGER) -> app2AppManagerSoftPosEventsOnDidPaymentGetReceiptSuccess message : \(message)")
         
-        DDLogInfo("\(Constant.APP_MANAGER) -> app2AppManagerSoftPosEventsOnDidPaymentGetReceiptSuccess : avviata sdkDelegate?.receivedReceipt(receipt: \(receipt))")
+        DDLogInfo("\(Constant.APP_MANAGER) -> app2AppManagerSoftPosEventsOnDidPaymentGetReceiptSuccess : start sdkDelegate?.receivedReceipt(receipt: \(receipt))")
         
         sdkDelegate?.resultFromSDK(message: message)
         
@@ -465,7 +466,7 @@ extension AppManager: App2AppManagerSoftPosEventsDelegate {
         DDLogInfo("\(Constant.APP_MANAGER) -> app2AppManagerSoftPosEventsOnDidRefundGetReceiptSuccess receipt : \(receipt)")
         DDLogInfo("\(Constant.APP_MANAGER) -> app2AppManagerSoftPosEventsOnDidRefundGetReceiptSuccess message : \(message)")
         
-        DDLogInfo("\(Constant.APP_MANAGER) -> app2AppManagerSoftPosEventsOnDidRefundGetReceiptSuccess : avviata sdkDelegate?.receivedReceipt(receipt : \(receipt))")
+        DDLogInfo("\(Constant.APP_MANAGER) -> app2AppManagerSoftPosEventsOnDidRefundGetReceiptSuccess : start sdkDelegate?.receivedReceipt(receipt : \(receipt))")
         
         sdkDelegate?.resultFromSDK(message: message)
         
@@ -487,7 +488,7 @@ extension AppManager: App2AppManagerSoftPosEventsDelegate {
         DDLogInfo("\(Constant.APP_MANAGER) -> app2AppManagerSoftPosEventsOnDidGetListTransactions list : \(list)")
         DDLogInfo("\(Constant.APP_MANAGER) -> app2AppManagerSoftPosEventsOnDidGetListTransactions message : \(message)")
         
-        DDLogInfo("\(Constant.APP_MANAGER) -> app2AppManagerSoftPosEventsOnDidGetListTransactions : avviata sdkDelegate?.receivedListTransaction(listTransaction : \(list))")
+        DDLogInfo("\(Constant.APP_MANAGER) -> app2AppManagerSoftPosEventsOnDidGetListTransactions : start sdkDelegate?.receivedListTransaction(listTransaction : \(list))")
         
         sdkDelegate?.resultFromSDK(message: message)
        

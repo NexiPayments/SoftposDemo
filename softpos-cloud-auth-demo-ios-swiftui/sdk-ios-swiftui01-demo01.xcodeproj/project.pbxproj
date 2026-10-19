@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		495DDA8D176BD3CA69B4FA11 /* Pods_sdk_ios_swiftui01_demo01.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 33418EEE8EE6CE89A04C0931 /* Pods_sdk_ios_swiftui01_demo01.framework */; };
+		D657BF39306AA5F300515A24 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = D657BF38306AA5F300515A24 /* README.md */; };
 		D6C4373C2EBBA65F008B26D6 /* CocoaLumberjack in Frameworks */ = {isa = PBXBuildFile; productRef = D6C4373B2EBBA65F008B26D6 /* CocoaLumberjack */; };
 		D6C4373E2EBBA65F008B26D6 /* CocoaLumberjackSwift in Frameworks */ = {isa = PBXBuildFile; productRef = D6C4373D2EBBA65F008B26D6 /* CocoaLumberjackSwift */; };
 		D6C437402EBBA65F008B26D6 /* CocoaLumberjackSwiftLogBackend in Frameworks */ = {isa = PBXBuildFile; productRef = D6C4373F2EBBA65F008B26D6 /* CocoaLumberjackSwiftLogBackend */; };
@@ -24,6 +25,7 @@
 		82F925A81E2CE2FC0EA1A469 /* Pods-sdk-ios-swiftui01.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-sdk-ios-swiftui01.debug.xcconfig"; path = "Target Support Files/Pods-sdk-ios-swiftui01/Pods-sdk-ios-swiftui01.debug.xcconfig"; sourceTree = "<group>"; };
 		989C7005C657D13DFD5BB147 /* Pods-sdk-ios-swiftui01.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-sdk-ios-swiftui01.release.xcconfig"; path = "Target Support Files/Pods-sdk-ios-swiftui01/Pods-sdk-ios-swiftui01.release.xcconfig"; sourceTree = "<group>"; };
 		D6046F563036FD2400706452 /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
+		D657BF38306AA5F300515A24 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		D6C9CA502EAA2446008495E3 /* sdk-ios-swiftui01-demo01.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "sdk-ios-swiftui01-demo01.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -89,6 +91,7 @@
 		D6C9CA472EAA2446008495E3 = {
 			isa = PBXGroup;
 			children = (
+				D657BF38306AA5F300515A24 /* README.md */,
 				D6046F563036FD2400706452 /* .gitignore */,
 				D6C9CA522EAA2446008495E3 /* sdk-ios-swiftui01-demo01 */,
 				D6C9CA512EAA2446008495E3 /* Products */,
@@ -185,6 +188,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D657BF39306AA5F300515A24 /* README.md in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

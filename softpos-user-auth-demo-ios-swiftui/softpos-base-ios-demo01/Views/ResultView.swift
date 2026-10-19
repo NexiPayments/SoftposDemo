@@ -1,30 +1,28 @@
-//
-//  ResultView.swift
-//  SwiftUI_25-08-30_02_ AppIntercom
-//
-//  Created by MAC-01 on 30/08/25.
-//
-
 import SwiftUI
 
-// Mostra i dati ricevuti
+/**
+ *
+ * Nexi Payments
+ *
+ * Show the transaction result
+ *
+ */
 struct ResultView: View {
     
     @ObservedObject                     var appState            : AppState
     @Environment(\.presentationMode)    var presentationMode
-    @State                              var risultato           : String = ""
+    @State                              var result              : String = ""
     
     var body: some View {
         
         VStack(spacing: 20) {
             
-            TextEditor(text: $risultato)
+            TextEditor(text: $result)
                 .foregroundColor(.black)
                 .padding()
             
-            Button("Chiudi"){
+            Button("Close"){
                 
-                // Chiude la View
                 presentationMode.wrappedValue.dismiss()
                 
             }
@@ -33,11 +31,13 @@ struct ResultView: View {
             
         } // VStack
         .applyDemoBackground()
-        .navigationTitle("Risultati")
+        .navigationTitle("Result")
         .navigationBarBackButtonHidden(true)
         .onAppear() {
             
-            risultato = appState.risultatoOperazione
+            // When opening the View, retrieve
+            // the result from the app state
+            result = appState.resultTransaction
             
         }
         
